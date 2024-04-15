@@ -2,7 +2,6 @@ package com.example.se1845.controller;
 
 import java.util.Optional;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,41 +13,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.se1845.model.Employee;
-import com.example.se1845.repository.EmployeeRepository;
+import com.example.se1845.service.EmployeeService;
 
 @RestController
 @RequestMapping("/employees")
 public class EmployeeRestApiController {
-    private final EmployeeRepository employeeRepository;
+    private final EmployeeService employeeService;
 
-    public EmployeeRestApiController(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
+    public EmployeeRestApiController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @GetMapping
     public Iterable<Employee> getAllEmployees() {
-        return employeeRepository.findAll();
+        return employeeService.getAllEmployees();
     }
 
     @GetMapping("/{ssn}")
     public Optional<Employee> getEmployeeBySsn(@PathVariable String ssn) {
-        return employeeRepository.findById(ssn);
+        return employeeService.getEmployeeBySsn(ssn);
     }
 
     @PostMapping
-    public Employee createEmployee(@RequestBody Employee employee) {
-        return employeeRepository.save(employee);
+    public ResponseEntity<Object> createEmployee(@RequestBody Employee employee) {
+        return employeeService.createEmployee(employee);
     }
 
     @PutMapping("/{ssn}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable String ssn, @RequestBody Employee employee) {
-        return (employeeRepository.existsById(ssn))
-                ? new ResponseEntity<>(employeeRepository.save(employee), HttpStatus.OK)
-                : new ResponseEntity<>(employeeRepository.save(employee), HttpStatus.CREATED);
+    public ResponseEntity<Object> updateEmployee(@PathVariable String ssn, @RequestBody Employee employee) {
+        return employeeService.updateEmployee(ssn, employee);
     }
 
     @DeleteMapping("/{ssn}")
-    public void deleteEmployee(@PathVariable String ssn) {
-        employeeRepository.deleteById(ssn);
+    public ResponseEntity<Object> deleteEmployee(@PathVariable String ssn) {
+        return employeeService.deleteEmployee(ssn);
     }
 }

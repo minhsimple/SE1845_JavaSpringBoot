@@ -9,18 +9,16 @@ public class Employee {
     @Id
     private String SSN;
 
-    private String FName, LName, Address, DeptNo, SSNSupervisor;
+    private String FName, LName, Address, DeptNo;
     private double Salary;
     private boolean sex;
 
-    public Employee(String SSN, String FName, String LName, String Address, double Salary, boolean Sex, String DeptNo,
-            String SSNSupervisor) {
+    public Employee(String SSN, String FName, String LName, String Address, double Salary, boolean Sex, String DeptNo) {
         this.SSN = SSN;
         this.FName = FName;
         this.LName = LName;
         this.Address = Address;
         this.DeptNo = DeptNo;
-        this.SSNSupervisor = SSNSupervisor;
         this.Salary = Salary;
         this.sex = Sex;
     }
@@ -46,10 +44,6 @@ public class Employee {
 
     public String getDeptNo() {
         return DeptNo;
-    }
-
-    public String getSSNSupervisor() {
-        return SSNSupervisor;
     }
 
     public double getSalary() {
@@ -80,10 +74,6 @@ public class Employee {
         this.DeptNo = DeptNo;
     }
 
-    public void setSSNSupervisor(String SSNSupervisor) {
-        this.SSNSupervisor = SSNSupervisor;
-    }
-
     public void setSalary(double Salary) {
         this.Salary = Salary;
     }
@@ -95,7 +85,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" + "SSN=" + SSN + ", FName=" + FName + ", LName=" + LName + ", Address=" + Address
-                + ", DeptNo=" + DeptNo + ", SSNSupervisor=" + SSNSupervisor + ", Salary=" + Salary + ", sex=" + sex
+                + ", DeptNo=" + DeptNo + ", Salary=" + Salary + ", sex=" + sex
                 + '}';
     }
 
