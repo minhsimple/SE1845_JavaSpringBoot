@@ -31,12 +31,12 @@ public class EmployeeServiceImp implements EmployeeService {
     }
 
     @Override
-    public Optional<Employee> getEmployeeBySsn(String ssn) {
+    public Optional<Employee> getEmployeeById(String ssn) {
         return employeeRepository.findById(ssn);
     }
 
     @Override
-    public Iterable<Employee> getAllEmployees() {
+    public Iterable<Employee> getAllEmployee() {
         return employeeRepository.findAll();
     }
 

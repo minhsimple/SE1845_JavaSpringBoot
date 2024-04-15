@@ -26,12 +26,12 @@ public class EmployeeRestApiController {
 
     @GetMapping
     public Iterable<Employee> getAllEmployees() {
-        return employeeService.getAllEmployees();
+        return employeeService.getAllEmployee();
     }
 
     @GetMapping("/{ssn}")
     public Optional<Employee> getEmployeeBySsn(@PathVariable String ssn) {
-        return employeeService.getEmployeeBySsn(ssn);
+        return employeeService.getEmployeeById(ssn);
     }
 
     @PostMapping

@@ -11,9 +11,9 @@ public interface EmployeeService {
 
     public ResponseEntity<Object> updateEmployee(String ssn, Employee employee);
 
-    public Optional<Employee> getEmployeeBySsn(String ssn);
+    public Optional<Employee> getEmployeeById(String ssn);
 
-    public Iterable<Employee> getAllEmployees();
+    public Iterable<Employee> getAllEmployee();
 
     public ResponseEntity<Object> deleteEmployee(String ssn);
 }
