@@ -1,4 +1,4 @@
-package com.example.se1845;
+package com.example.se1845.controller;
 
 import java.util.Optional;
 
@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.se1845.model.Employee;
+import com.example.se1845.repository.EmployeeRepository;
 
 @RestController
 @RequestMapping("/employees")
