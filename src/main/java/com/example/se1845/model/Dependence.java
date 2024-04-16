@@ -1,8 +1,5 @@
 package com.example.se1845.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
 @Entity
 public class Dependence {
 

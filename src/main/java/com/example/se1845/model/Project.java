@@ -22,21 +22,6 @@ public class Project {
 
     public String getName() {
         return Name;
-    }
-
-    public String getStartDate() {
-        return StartDate;
-    }
-
-    public String getEndDate() {
-        return EndDate;
-    }
-
-    public void setProNo(String ProNo) {
-        this.ProNo = ProNo;
-    }
-
-    public void setName(String Name) {
         this.Name = Name;
     }
 
