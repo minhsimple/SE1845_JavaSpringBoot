@@ -19,6 +19,20 @@ public class Department {
         return DeptNo;
     }
 
+    public String getName() {
+        return Name;
+    }
+
+    public String getLocation() {
+        return Location;
+    }
+
+    public void setDeptNo(String DeptNo) {
+        this.DeptNo = DeptNo;
+    }
+
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
     public void setLocation(String Location) {
