@@ -24,7 +24,7 @@ public class ProjectServiceImp implements ProjectService {
     @Override
     public ResponseEntity<Object> updateProject(String proNo, Project pro) {
         return (projectRepository.existsById(proNo)) ? new ResponseEntity<>(projectRepository.save(pro), HttpStatus.OK)
-                : new ResponseEntity<>(projectRepository.save(pro), HttpStatus.CREATED);
+                : new ResponseEntity<>("Project not found", HttpStatus.NOT_FOUND);
     }
 
     @Override

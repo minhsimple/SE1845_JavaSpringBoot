@@ -25,7 +25,7 @@ public class DepartmentServiceImp implements DepartmentService {
     public ResponseEntity<Object> updateDepartment(String deptId, Department depart) {
         return (departmentRepository.existsById(deptId))
                 ? new ResponseEntity<>(departmentRepository.save(depart), HttpStatus.OK)
-                : new ResponseEntity<>(departmentRepository.save(depart), HttpStatus.CREATED);
+                : new ResponseEntity<>("Department not found", HttpStatus.NOT_FOUND);
     }
 
     @Override

@@ -24,7 +24,7 @@ public class DependenceServiceImp implements DependenceService {
     @Override
     public ResponseEntity<Object> updateDependence(String depId, Dependence dep) {
         return (depRepo.existsById(depId)) ? new ResponseEntity<>(depRepo.save(dep), HttpStatus.OK)
-                : new ResponseEntity<>(depRepo.save(dep), HttpStatus.CREATED);
+                : new ResponseEntity<>("Dependence not found", HttpStatus.NOT_FOUND);
     }
 
     @Override
