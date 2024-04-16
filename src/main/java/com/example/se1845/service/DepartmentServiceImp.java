@@ -25,7 +25,7 @@ public class DepartmentServiceImp implements DepartmentService {
     public ResponseEntity<Object> updateDepartment(String deptId, Department depart) {
         return (departmentRepository.existsById(deptId))
                 ? new ResponseEntity<>(departmentRepository.save(depart), HttpStatus.OK)
-                : new ResponseEntity<>("Department not found", HttpStatus.NOT_FOUND);
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class DepartmentServiceImp implements DepartmentService {
     @Override
     public ResponseEntity<Object> deleteDepartment(String deptId) {
         departmentRepository.deleteById(deptId);
-        return new ResponseEntity<>("Department deleted", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

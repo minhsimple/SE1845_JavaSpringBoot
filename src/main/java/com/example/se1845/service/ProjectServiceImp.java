@@ -24,7 +24,7 @@ public class ProjectServiceImp implements ProjectService {
     @Override
     public ResponseEntity<Object> updateProject(String proNo, Project pro) {
         return (projectRepository.existsById(proNo)) ? new ResponseEntity<>(projectRepository.save(pro), HttpStatus.OK)
-                : new ResponseEntity<>("Project not found", HttpStatus.NOT_FOUND);
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @Override
@@ -40,6 +40,6 @@ public class ProjectServiceImp implements ProjectService {
     @Override
     public ResponseEntity<Object> deleteProject(String proNo) {
         projectRepository.deleteById(proNo);
-        return new ResponseEntity<>("Project deleted", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

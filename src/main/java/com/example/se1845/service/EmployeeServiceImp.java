@@ -25,7 +25,7 @@ public class EmployeeServiceImp implements EmployeeService {
     public ResponseEntity<Object> updateEmployee(String ssn, Employee employee) {
         return (employeeRepository.existsById(ssn))
                 ? new ResponseEntity<>(employeeRepository.save(employee), HttpStatus.OK)
-                : new ResponseEntity<>("Employee not found", HttpStatus.NOT_FOUND);
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class EmployeeServiceImp implements EmployeeService {
     @Override
     public ResponseEntity<Object> deleteEmployee(String ssn) {
         employeeRepository.deleteById(ssn);
-        return new ResponseEntity<>("Employee deleted", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
