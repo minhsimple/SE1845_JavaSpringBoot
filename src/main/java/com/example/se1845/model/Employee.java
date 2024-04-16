@@ -23,30 +23,6 @@ public class Employee {
     public Employee() {
     }
 
-    @ManyToMany
-    @JoinTable(name = "Emp_Relation_Dep", joinColumns = @JoinColumn(name = "SSN"), inverseJoinColumns = @JoinColumn(name = "DepID"))
-    private List<Dependence> deps = new ArrayList<>();
-
-    @ManyToMany
-    @JoinTable(name = "Emp_WorkOn_Pro", joinColumns = @JoinColumn(name = "SSN"), inverseJoinColumns = @JoinColumn(name = "ProNo"))
-    private List<Project> pros = new ArrayList<>();
-
-    @ManyToOne
-    @JoinColumn(name = "DeptNo")
-    private Department dept;
-
-    public Department getDept() {
-        return dept;
-    }
-
-    public List<Project> getPros() {
-        return pros;
-    }
-
-    public List<Dependence> getDeps() {
-        return deps;
-    }
-
     public String getSSN() {
         return SSN;
     }
@@ -93,17 +69,5 @@ public class Employee {
 
     public void setSex(boolean sex) {
         this.sex = sex;
-    }
-
-    public void setDeps(List<Dependence> deps) {
-        this.deps = deps;
-    }
-
-    public void setPros(List<Project> pros) {
-        this.pros = pros;
-    }
-
-    public void setDept(Department dept) {
-        this.dept = dept;
     }
 }

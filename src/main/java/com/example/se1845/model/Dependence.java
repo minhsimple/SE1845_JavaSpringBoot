@@ -19,13 +19,6 @@ public class Dependence {
     public Dependence() {
     }
 
-    @ManyToMany(mappedBy = "deps")
-    private List<Employee> emps = new ArrayList<>();
-
-    public List<Employee> getEmps() {
-        return emps;
-    }
-
     public String getDepID() {
         return DepID;
     }
@@ -36,10 +29,6 @@ public class Dependence {
 
     public String getDOB() {
         return DOB;
-    }
-
-    public void setEmps(List<Employee> emps) {
-        this.emps = emps;
     }
 
     public void setDepID(String DepID) {

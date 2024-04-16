@@ -22,21 +22,6 @@ public class Project {
     public Project() {
     }
 
-    @ManyToMany(mappedBy = "pros")
-    private List<Employee> emps = new ArrayList<>();
-
-    @ManyToOne
-    @JoinColumn(name = "DeptNo")
-    private Department dept;
-
-    public Department getDept() {
-        return dept;
-    }
-
-    public List<Employee> getEmps() {
-        return emps;
-    }
-
     public String getProNo() {
         return ProNo;
     }
@@ -51,10 +36,6 @@ public class Project {
 
     public String getEndDate() {
         return EndDate;
-    }
-
-    public void setEmps(List<Employee> emps) {
-        this.emps = emps;
     }
 
     public void setProNo(String ProNo) {
@@ -73,7 +54,4 @@ public class Project {
         this.EndDate = EndDate;
     }
 
-    public void setDept(Department dept) {
-        this.dept = dept;
-    }
 }
