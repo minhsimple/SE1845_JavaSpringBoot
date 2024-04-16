@@ -1,7 +1,14 @@
 package com.example.se1845.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 public class Employee {
@@ -9,21 +16,35 @@ public class Employee {
     @Id
     private String SSN;
 
-    private String FName, LName, Address, DeptNo;
+    private String FName, LName, Address;
     private double Salary;
     private boolean sex;
 
-    public Employee(String SSN, String FName, String LName, String Address, double Salary, boolean Sex, String DeptNo) {
-        this.SSN = SSN;
-        this.FName = FName;
-        this.LName = LName;
-        this.Address = Address;
-        this.DeptNo = DeptNo;
-        this.Salary = Salary;
-        this.sex = Sex;
+    public Employee() {
     }
 
-    public Employee() {
+    @ManyToMany
+    @JoinTable(name = "Emp_Relation_Dep", joinColumns = @JoinColumn(name = "SSN"), inverseJoinColumns = @JoinColumn(name = "DepID"))
+    private List<Dependence> deps = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "Emp_WorkOn_Pro", joinColumns = @JoinColumn(name = "SSN"), inverseJoinColumns = @JoinColumn(name = "ProNo"))
+    private List<Project> pros = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "DeptNo")
+    private Department dept;
+
+    public Department getDept() {
+        return dept;
+    }
+
+    public List<Project> getPros() {
+        return pros;
+    }
+
+    public List<Dependence> getDeps() {
+        return deps;
     }
 
     public String getSSN() {
@@ -40,10 +61,6 @@ public class Employee {
 
     public String getAddress() {
         return Address;
-    }
-
-    public String getDeptNo() {
-        return DeptNo;
     }
 
     public double getSalary() {
@@ -70,10 +87,6 @@ public class Employee {
         this.Address = Address;
     }
 
-    public void setDeptNo(String DeptNo) {
-        this.DeptNo = DeptNo;
-    }
-
     public void setSalary(double Salary) {
         this.Salary = Salary;
     }
@@ -82,11 +95,15 @@ public class Employee {
         this.sex = sex;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" + "SSN=" + SSN + ", FName=" + FName + ", LName=" + LName + ", Address=" + Address
-                + ", DeptNo=" + DeptNo + ", Salary=" + Salary + ", sex=" + sex
-                + '}';
+    public void setDeps(List<Dependence> deps) {
+        this.deps = deps;
     }
 
+    public void setPros(List<Project> pros) {
+        this.pros = pros;
+    }
+
+    public void setDept(Department dept) {
+        this.dept = dept;
+    }
 }

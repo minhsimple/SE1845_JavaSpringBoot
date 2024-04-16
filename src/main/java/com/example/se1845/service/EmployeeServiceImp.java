@@ -2,6 +2,7 @@ package com.example.se1845.service;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -12,11 +13,8 @@ import com.example.se1845.repository.EmployeeRepository;
 @Service
 public class EmployeeServiceImp implements EmployeeService {
 
-    private final EmployeeRepository employeeRepository;
-
-    public EmployeeServiceImp(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
-    }
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     @Override
     public ResponseEntity<Object> createEmployee(Employee employee) {
