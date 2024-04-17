@@ -12,7 +12,7 @@ public interface Emp_Relation_DepService {
 
     public ResponseEntity<Object> updateEmp_Relation_Dep(Emp_Relation_Dep_Key id, Emp_Relation_Dep erd);
 
-    public Optional<Emp_Relation_Dep> getEmp_Relation_DepId(Emp_Relation_Dep_Key id);
+    public Optional<Emp_Relation_Dep> getEmp_Relation_DepById(Emp_Relation_Dep_Key id);
 
     public Iterable<Emp_Relation_Dep> getAllEmp_Relation_Dep();
 
