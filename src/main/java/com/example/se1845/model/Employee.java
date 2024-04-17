@@ -15,10 +15,10 @@ import jakarta.persistence.JoinColumn;
 public class Employee {
 
     @Id
-    private String SSN;
+    private String ssn;
 
-    private String FName, LName, Address;
-    private double Salary;
+    private String fname, lname, address;
+    private double salary;
     private boolean sex;
 
     public Employee() {
@@ -49,48 +49,48 @@ public class Employee {
         return dept;
     }
 
-    public String getSSN() {
-        return SSN;
+    public String getSsn() {
+        return ssn;
     }
 
-    public String getFName() {
-        return FName;
+    public String getFname() {
+        return fname;
     }
 
-    public String getLName() {
-        return LName;
+    public String getLname() {
+        return lname;
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public double getSalary() {
-        return Salary;
+        return salary;
     }
 
     public boolean isSex() {
         return sex;
     }
 
-    public void setSSN(String SSN) {
-        this.SSN = SSN;
+    public void setSsn(String SSN) {
+        this.ssn = SSN;
     }
 
-    public void setFName(String FName) {
-        this.FName = FName;
+    public void setFname(String FName) {
+        this.fname = FName;
     }
 
-    public void setLName(String LName) {
-        this.LName = LName;
+    public void setLname(String LName) {
+        this.lname = LName;
     }
 
     public void setAddress(String Address) {
-        this.Address = Address;
+        this.address = Address;
     }
 
     public void setSalary(double Salary) {
-        this.Salary = Salary;
+        this.salary = Salary;
     }
 
     public void setSex(boolean sex) {

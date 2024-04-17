@@ -13,10 +13,10 @@ import jakarta.persistence.OneToMany;
 public class Department {
 
     @Id
-    private String DeptNo;
+    private String deptno;
 
-    private String Name;
-    private String Location;
+    private String name;
+    private String location;
 
     public Department() {
     }
@@ -37,28 +37,28 @@ public class Department {
         return emps;
     }
 
-    public String getDeptNo() {
-        return DeptNo;
+    public String getDeptno() {
+        return deptno;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public String getLocation() {
-        return Location;
+        return location;
     }
 
-    public void setDeptNo(String DeptNo) {
-        this.DeptNo = DeptNo;
+    public void setDeptno(String DeptNo) {
+        this.deptno = DeptNo;
     }
 
     public void setName(String Name) {
-        this.Name = Name;
+        this.name = Name;
     }
 
     public void setLocation(String Location) {
-        this.Location = Location;
+        this.location = Location;
     }
 
     public void setEmps( List<Employee> emps) {

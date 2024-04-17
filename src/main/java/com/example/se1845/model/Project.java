@@ -5,6 +5,7 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -15,11 +16,16 @@ import jakarta.persistence.OneToMany;
 public class Project {
 
     @Id
-    private String ProNo;
+    @Column(name = "ProNo")
+    private String proNo;
 
-    private String Name;
-    private String StartDate;
-    private String EndDate;
+    private String name;
+
+    @Column(name = "StartDate")
+    private String startDate;
+
+    @Column(name = "EndDate")
+    private String endDate;
 
     public Project() {
     }
@@ -42,35 +48,35 @@ public class Project {
     }
 
     public String getProNo() {
-        return ProNo;
+        return proNo;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public String getStartDate() {
-        return StartDate;
+        return startDate;
     }
 
     public String getEndDate() {
-        return EndDate;
+        return endDate;
     }
 
     public void setProNo(String ProNo) {
-        this.ProNo = ProNo;
+        this.proNo = ProNo;
     }
 
     public void setName(String Name) {
-        this.Name = Name;
+        this.name = Name;
     }
 
     public void setStartDate(String StartDate) {
-        this.StartDate = StartDate;
+        this.startDate = StartDate;
     }
 
     public void setEndDate(String EndDate) {
-        this.EndDate = EndDate;
+        this.endDate = EndDate;
     }
 
     public void setDept(Department dept) {

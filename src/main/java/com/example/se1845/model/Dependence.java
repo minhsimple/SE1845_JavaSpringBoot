@@ -12,10 +12,10 @@ import jakarta.persistence.OneToMany;
 public class Dependence {
 
     @Id
-    private String DepID;
+    private String depId;
 
-    private String Name;
-    private String DOB;
+    private String name;
+    private String dob;
 
     @OneToMany(mappedBy = "dependence")
     @JsonManagedReference
@@ -28,28 +28,28 @@ public class Dependence {
         return erds;
     }
 
-    public String getDepID() {
-        return DepID;
+    public String getDepId() {
+        return depId;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
-    public String getDOB() {
-        return DOB;
+    public String getDob() {
+        return dob;
     }
 
-    public void setDepID(String DepID) {
-        this.DepID = DepID;
+    public void setDepId(String DepID) {
+        this.depId = DepID;
     }
 
     public void setName(String Name) {
-        this.Name = Name;
+        this.name = Name;
     }
 
-    public void setDOB(String DOB) {
-        this.DOB = DOB;
+    public void setDob(String DOB) {
+        this.dob = DOB;
     }
 
     public void setErds(Set<EmpRelationDep> erds) {

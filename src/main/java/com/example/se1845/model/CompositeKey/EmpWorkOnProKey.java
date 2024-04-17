@@ -8,42 +8,42 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class EmpWorkOnProKey implements Serializable {
     @Column(name = "SSN")
-    private String SSN;
+    private String ssn;
 
     @Column(name = "ProNo")
-    private String ProNo;
+    private String proNo;
 
     public EmpWorkOnProKey() {
 
     }
 
-    public EmpWorkOnProKey(String SSN, String ProNo) {
-        this.SSN = SSN;
-        this.ProNo = ProNo;
+    public EmpWorkOnProKey(String ssn, String proNo) {
+        this.ssn = ssn;
+        this.proNo = proNo;
     }
 
-    public String getSSN() {
-        return SSN;
+    public String getSsn() {
+        return ssn;
     }
 
-    public void setSSN(String SSN) {
-        this.SSN = SSN;
+    public void setSsn(String SSN) {
+        this.ssn = SSN;
     }
 
     public String getProNo() {
-        return ProNo;
+        return proNo;
     }
 
     public void setProNo(String ProNo) {
-        this.ProNo = ProNo;
+        this.proNo = ProNo;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((SSN == null) ? 0 : SSN.hashCode());
-        result = prime * result + ((ProNo == null) ? 0 : ProNo.hashCode());
+        result = prime * result + ((ssn == null) ? 0 : ssn.hashCode());
+        result = prime * result + ((proNo == null) ? 0 : proNo.hashCode());
         return result;
     }
 
@@ -54,15 +54,15 @@ public class EmpWorkOnProKey implements Serializable {
         if (obj == null || getClass() != obj.getClass())
             return false;
         EmpWorkOnProKey other = (EmpWorkOnProKey) obj;
-        if (SSN == null) {
-            if (other.SSN != null)
+        if (ssn == null) {
+            if (other.ssn != null)
                 return false;
-        } else if (!SSN.equals(other.SSN))
+        } else if (!ssn.equals(other.ssn))
             return false;
-        if (ProNo == null) {
-            if (other.ProNo != null)
+        if (proNo == null) {
+            if (other.proNo != null)
                 return false;
-        } else if (!ProNo.equals(other.ProNo))
+        } else if (!proNo.equals(other.proNo))
             return false;
         return true;
     }

@@ -18,18 +18,18 @@ public class EmpRelationDep {
     private EmpRelationDepKey id;
 
     @ManyToOne
-    @MapsId("SSN")
+    @MapsId("ssn")
     @JoinColumn(name = "SSN")
     @JsonBackReference
     Employee employee;
 
     @ManyToOne
-    @MapsId("DepID")
+    @MapsId("depId")
     @JoinColumn(name = "DepID")
     @JsonBackReference
     Dependence dependence;
 
-    private String Relationship;
+    private String relationship;
 
     public EmpRelationDep() {
     }
@@ -38,7 +38,7 @@ public class EmpRelationDep {
         this.id = id;
         this.employee = employee;
         this.dependence = dependence;
-        this.Relationship = relationship;
+        this.relationship = relationship;
     }
 
     public EmpRelationDepKey getId() {
@@ -66,11 +66,11 @@ public class EmpRelationDep {
     }
 
     public String getRelationship() {
-        return Relationship;
+        return relationship;
     }
 
     public void setRelationship(String relationship) {
-        this.Relationship = relationship;
+        this.relationship = relationship;
     }
 
 }

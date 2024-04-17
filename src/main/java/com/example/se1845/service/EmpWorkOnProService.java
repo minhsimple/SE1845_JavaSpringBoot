@@ -12,7 +12,7 @@ public interface EmpWorkOnProService {
 
     public ResponseEntity<Object> updateEmpWorkOnPro(EmpWorkOnProKey id, EmpWorkOnPro ewp);
 
-    public Optional<EmpWorkOnPro> getEmpWorkOnProId(EmpWorkOnProKey id);
+    public Optional<EmpWorkOnPro> getEmpWorkOnProById(EmpWorkOnProKey id);
 
     public Iterable<EmpWorkOnPro> getAllEmpWorkOnPro();
 
