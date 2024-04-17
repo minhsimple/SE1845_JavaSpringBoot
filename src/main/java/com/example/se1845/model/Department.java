@@ -49,10 +49,6 @@ public class Department {
         return Location;
     }
 
-    public void setEmps(List<Employee> emps) {
-        this.emps = emps;
-    }
-
     public void setDeptNo(String DeptNo) {
         this.DeptNo = DeptNo;
     }
@@ -63,10 +59,6 @@ public class Department {
 
     public void setLocation(String Location) {
         this.Location = Location;
-    }
-
-    public void setPros(List<Project> pros) {
-        this.pros = pros;
     }
 
 }
