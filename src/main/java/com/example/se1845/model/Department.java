@@ -65,4 +65,8 @@ public class Department {
         this.emps = emps;
     }
 
+    public void setPros( List<Project> pros) {
+        this.pros = pros;
+    }
+
 }
