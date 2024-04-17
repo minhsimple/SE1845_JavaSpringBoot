@@ -7,7 +7,7 @@ import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class EmpWorkOnProKey implements Serializable {
-    
+
     @Column(name = "SSN")
     private String ssn;
 
