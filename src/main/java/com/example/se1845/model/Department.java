@@ -61,4 +61,8 @@ public class Department {
         this.Location = Location;
     }
 
+    public void setEmps( List<Employee> emps) {
+        this.emps = emps;
+    }
+
 }
