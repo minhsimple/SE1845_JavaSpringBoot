@@ -3,6 +3,8 @@ package com.example.se1845.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -20,9 +22,11 @@ public class Department {
     }
 
     @OneToMany(mappedBy = "dept")
+    @JsonManagedReference
     private List<Employee> emps = new ArrayList<>();
 
     @OneToMany(mappedBy = "dept")
+    @JsonManagedReference
     private List<Project> pros = new ArrayList<>();
 
     public List<Project> getPros() {

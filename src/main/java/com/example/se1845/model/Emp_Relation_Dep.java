@@ -1,6 +1,7 @@
 package com.example.se1845.model;
 
 import com.example.se1845.model.CompositeKey.Emp_Relation_Dep_Key;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -17,11 +18,13 @@ public class Emp_Relation_Dep {
     @ManyToOne
     @MapsId("SSN")
     @JoinColumn(name = "SSN")
+    @JsonBackReference
     Employee employee;
 
     @ManyToOne
     @MapsId("DepID")
     @JoinColumn(name = "DepID")
+    @JsonBackReference
     Dependence dependence;
 
     private String Relationship;

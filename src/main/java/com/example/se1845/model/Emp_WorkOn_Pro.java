@@ -1,6 +1,7 @@
 package com.example.se1845.model;
 
 import com.example.se1845.model.CompositeKey.Emp_WorkOn_Pro_Key;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -16,11 +17,13 @@ public class Emp_WorkOn_Pro {
     @ManyToOne
     @MapsId("SSN")
     @JoinColumn(name = "SSN")
+    @JsonBackReference
     private Employee employee;
 
     @ManyToOne
     @MapsId("ProNo")
     @JoinColumn(name = "ProNo")
+    @JsonBackReference
     private Project project;
 
     private String Position;

@@ -2,6 +2,8 @@ package com.example.se1845.model;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -16,6 +18,7 @@ public class Dependence {
     private String DOB;
 
     @OneToMany(mappedBy = "dependence")
+    @JsonManagedReference
     private Set<Emp_Relation_Dep> erds;
 
     public Dependence() {

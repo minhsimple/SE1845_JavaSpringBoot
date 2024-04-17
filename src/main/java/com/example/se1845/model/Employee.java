@@ -3,6 +3,7 @@ package com.example.se1845.model;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -24,9 +25,11 @@ public class Employee {
     }
 
     @OneToMany(mappedBy = "employee")
+    @JsonManagedReference
     Set<Emp_WorkOn_Pro> ewps;
 
     @OneToMany(mappedBy = "employee")
+    @JsonManagedReference
     Set<Emp_Relation_Dep> erds;
 
     @ManyToOne

@@ -35,7 +35,8 @@ public class EmployeeServiceImp implements EmployeeService {
 
     @Override
     public Iterable<Employee> getAllEmployee() {
-        return employeeRepository.findAll();
+        Iterable<Employee> emps = employeeRepository.findAll();
+        return emps;
     }
 
     @Override
