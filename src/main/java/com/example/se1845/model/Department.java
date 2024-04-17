@@ -1,7 +1,13 @@
 package com.example.se1845.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Department {
@@ -13,6 +19,22 @@ public class Department {
     private String Location;
 
     public Department() {
+    }
+
+    @OneToMany(mappedBy = "dept")
+    @JsonManagedReference
+    private List<Employee> emps = new ArrayList<>();
+
+    @OneToMany(mappedBy = "dept")
+    @JsonManagedReference
+    private List<Project> pros = new ArrayList<>();
+
+    public List<Project> getPros() {
+        return pros;
+    }
+
+    public List<Employee> getEmps() {
+        return emps;
     }
 
     public String getDeptNo() {
@@ -37,6 +59,10 @@ public class Department {
 
     public void setLocation(String Location) {
         this.Location = Location;
+    }
+
+    public void setEmps( List<Employee> emps) {
+        this.emps = emps;
     }
 
 }

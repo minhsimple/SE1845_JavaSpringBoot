@@ -1,7 +1,15 @@
 package com.example.se1845.model;
 
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Project {
@@ -14,6 +22,23 @@ public class Project {
     private String EndDate;
 
     public Project() {
+    }
+
+    @OneToMany(mappedBy = "project")
+    @JsonManagedReference
+    Set<Emp_WorkOn_Pro> ewps;
+
+    @ManyToOne
+    @JoinColumn(name = "DeptNo")
+    @JsonBackReference
+    private Department dept;
+
+    public Set<Emp_WorkOn_Pro> getEwps() {
+        return ewps;
+    }
+
+    public Department getDept() {
+        return dept;
     }
 
     public String getProNo() {
@@ -46,6 +71,14 @@ public class Project {
 
     public void setEndDate(String EndDate) {
         this.EndDate = EndDate;
+    }
+
+    public void setDept(Department dept) {
+        this.dept = dept;
+    }
+
+    public void setEwps(Set<Emp_WorkOn_Pro> ewps) {
+        this.ewps = ewps;
     }
 
 }

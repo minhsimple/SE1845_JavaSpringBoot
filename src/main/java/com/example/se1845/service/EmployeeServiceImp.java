@@ -25,7 +25,7 @@ public class EmployeeServiceImp implements EmployeeService {
     public ResponseEntity<Object> updateEmployee(String ssn, Employee employee) {
         return (employeeRepository.existsById(ssn))
                 ? new ResponseEntity<>(employeeRepository.save(employee), HttpStatus.OK)
-                : new ResponseEntity<>(employeeRepository.save(employee), HttpStatus.CREATED);
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @Override
@@ -35,13 +35,14 @@ public class EmployeeServiceImp implements EmployeeService {
 
     @Override
     public Iterable<Employee> getAllEmployee() {
-        return employeeRepository.findAll();
+        Iterable<Employee> emps = employeeRepository.findAll();
+        return emps;
     }
 
     @Override
     public ResponseEntity<Object> deleteEmployee(String ssn) {
         employeeRepository.deleteById(ssn);
-        return new ResponseEntity<>("Employee deleted", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
