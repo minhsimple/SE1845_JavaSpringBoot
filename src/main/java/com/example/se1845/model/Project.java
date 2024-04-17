@@ -1,13 +1,12 @@
 package com.example.se1845.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Project {
@@ -22,19 +21,19 @@ public class Project {
     public Project() {
     }
 
-    @ManyToMany(mappedBy = "pros")
-    private List<Employee> emps = new ArrayList<>();
+    @OneToMany(mappedBy = "project")
+    Set<Emp_WorkOn_Pro> ewps;
 
     @ManyToOne
     @JoinColumn(name = "DeptNo")
     private Department dept;
 
-    public Department getDept() {
-        return dept;
+    public Set<Emp_WorkOn_Pro> getEwps() {
+        return ewps;
     }
 
-    public List<Employee> getEmps() {
-        return emps;
+    public Department getDept() {
+        return dept;
     }
 
     public String getProNo() {
@@ -51,10 +50,6 @@ public class Project {
 
     public String getEndDate() {
         return EndDate;
-    }
-
-    public void setEmps(List<Employee> emps) {
-        this.emps = emps;
     }
 
     public void setProNo(String ProNo) {
@@ -76,4 +71,9 @@ public class Project {
     public void setDept(Department dept) {
         this.dept = dept;
     }
+
+    public void setEwps(Set<Emp_WorkOn_Pro> ewps) {
+        this.ewps = ewps;
+    }
+
 }

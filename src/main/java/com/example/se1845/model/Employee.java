@@ -1,13 +1,13 @@
 package com.example.se1845.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.JoinColumn;
 
 @Entity
@@ -23,28 +23,27 @@ public class Employee {
     public Employee() {
     }
 
-    @ManyToMany
-    @JoinTable(name = "Emp_Relation_Dep", joinColumns = @JoinColumn(name = "SSN"), inverseJoinColumns = @JoinColumn(name = "DepID"))
-    private List<Dependence> deps = new ArrayList<>();
+    @OneToMany(mappedBy = "employee")
+    Set<Emp_WorkOn_Pro> ewps;
 
-    @ManyToMany
-    @JoinTable(name = "Emp_WorkOn_Pro", joinColumns = @JoinColumn(name = "SSN"), inverseJoinColumns = @JoinColumn(name = "ProNo"))
-    private List<Project> pros = new ArrayList<>();
+    @OneToMany(mappedBy = "employee")
+    Set<Emp_Relation_Dep> erds;
 
     @ManyToOne
     @JoinColumn(name = "DeptNo")
+    @JsonBackReference
     private Department dept;
+
+    public Set<Emp_Relation_Dep> getErds() {
+        return erds;
+    }
+
+    public Set<Emp_WorkOn_Pro> getEwps() {
+        return ewps;
+    }
 
     public Department getDept() {
         return dept;
-    }
-
-    public List<Project> getPros() {
-        return pros;
-    }
-
-    public List<Dependence> getDeps() {
-        return deps;
     }
 
     public String getSSN() {
@@ -95,15 +94,15 @@ public class Employee {
         this.sex = sex;
     }
 
-    public void setDeps(List<Dependence> deps) {
-        this.deps = deps;
-    }
-
-    public void setPros(List<Project> pros) {
-        this.pros = pros;
-    }
-
     public void setDept(Department dept) {
         this.dept = dept;
+    }
+
+    public void setEwps(Set<Emp_WorkOn_Pro> ewps) {
+        this.ewps = ewps;
+    }
+
+    public void setErds(Set<Emp_Relation_Dep> erds) {
+        this.erds = erds;
     }
 }

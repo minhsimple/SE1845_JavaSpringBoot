@@ -1,11 +1,10 @@
 package com.example.se1845.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Dependence {
@@ -16,14 +15,14 @@ public class Dependence {
     private String Name;
     private String DOB;
 
+    @OneToMany(mappedBy = "dependence")
+    private Set<Emp_Relation_Dep> erds;
+
     public Dependence() {
     }
 
-    @ManyToMany(mappedBy = "deps")
-    private List<Employee> emps = new ArrayList<>();
-
-    public List<Employee> getEmps() {
-        return emps;
+    public Set<Emp_Relation_Dep> getErds() {
+        return erds;
     }
 
     public String getDepID() {
@@ -38,10 +37,6 @@ public class Dependence {
         return DOB;
     }
 
-    public void setEmps(List<Employee> emps) {
-        this.emps = emps;
-    }
-
     public void setDepID(String DepID) {
         this.DepID = DepID;
     }
@@ -52,6 +47,10 @@ public class Dependence {
 
     public void setDOB(String DOB) {
         this.DOB = DOB;
+    }
+
+    public void setErds(Set<Emp_Relation_Dep> erds) {
+        this.erds = erds;
     }
 
 }
