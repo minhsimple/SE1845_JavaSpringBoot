@@ -19,12 +19,12 @@ public class Dependence {
 
     @OneToMany(mappedBy = "dependence")
     @JsonManagedReference
-    private Set<Emp_Relation_Dep> erds;
+    private Set<EmpRelationDep> erds;
 
     public Dependence() {
     }
 
-    public Set<Emp_Relation_Dep> getErds() {
+    public Set<EmpRelationDep> getErds() {
         return erds;
     }
 
@@ -52,7 +52,7 @@ public class Dependence {
         this.DOB = DOB;
     }
 
-    public void setErds(Set<Emp_Relation_Dep> erds) {
+    public void setErds(Set<EmpRelationDep> erds) {
         this.erds = erds;
     }
 

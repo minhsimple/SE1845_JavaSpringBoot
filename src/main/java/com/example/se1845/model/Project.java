@@ -26,14 +26,14 @@ public class Project {
 
     @OneToMany(mappedBy = "project")
     @JsonManagedReference
-    Set<Emp_WorkOn_Pro> ewps;
+    Set<EmpWorkOnPro> ewps;
 
     @ManyToOne
     @JoinColumn(name = "DeptNo")
     @JsonBackReference
     private Department dept;
 
-    public Set<Emp_WorkOn_Pro> getEwps() {
+    public Set<EmpWorkOnPro> getEwps() {
         return ewps;
     }
 
@@ -77,7 +77,7 @@ public class Project {
         this.dept = dept;
     }
 
-    public void setEwps(Set<Emp_WorkOn_Pro> ewps) {
+    public void setEwps(Set<EmpWorkOnPro> ewps) {
         this.ewps = ewps;
     }
 

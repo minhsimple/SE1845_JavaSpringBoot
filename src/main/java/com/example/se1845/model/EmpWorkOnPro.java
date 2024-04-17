@@ -1,6 +1,6 @@
 package com.example.se1845.model;
 
-import com.example.se1845.model.CompositeKey.Emp_WorkOn_Pro_Key;
+import com.example.se1845.model.CompositeKey.EmpWorkOnProKey;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.EmbeddedId;
@@ -8,11 +8,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
+import jakarta.persistence.Table;
 
 @Entity
-public class Emp_WorkOn_Pro {
+@Table(name = "Emp_WorkOn_Pro")
+public class EmpWorkOnPro {
     @EmbeddedId
-    private Emp_WorkOn_Pro_Key id;
+    private EmpWorkOnProKey id;
 
     @ManyToOne
     @MapsId("SSN")
@@ -29,7 +31,7 @@ public class Emp_WorkOn_Pro {
     private String Position;
     private float HourPerDay;
 
-    public Emp_WorkOn_Pro(Emp_WorkOn_Pro_Key id, Employee employee, Project project, String position,
+    public EmpWorkOnPro(EmpWorkOnProKey id, Employee employee, Project project, String position,
             float hourPerDay) {
         this.id = id;
         this.employee = employee;
@@ -38,15 +40,15 @@ public class Emp_WorkOn_Pro {
         this.HourPerDay = hourPerDay;
     }
 
-    public Emp_WorkOn_Pro() {
+    public EmpWorkOnPro() {
 
     }
 
-    public Emp_WorkOn_Pro_Key getId() {
+    public EmpWorkOnProKey getId() {
         return id;
     }
 
-    public void setId(Emp_WorkOn_Pro_Key id) {
+    public void setId(EmpWorkOnProKey id) {
         this.id = id;
     }
 

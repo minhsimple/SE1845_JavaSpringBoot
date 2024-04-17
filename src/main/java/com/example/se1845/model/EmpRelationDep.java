@@ -1,6 +1,6 @@
 package com.example.se1845.model;
 
-import com.example.se1845.model.CompositeKey.Emp_Relation_Dep_Key;
+import com.example.se1845.model.CompositeKey.EmpRelationDepKey;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.EmbeddedId;
@@ -8,12 +8,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
+import jakarta.persistence.Table;
 
 @Entity
-public class Emp_Relation_Dep {
+@Table(name = "Emp_Relation_Dep")
+public class EmpRelationDep {
 
     @EmbeddedId
-    private Emp_Relation_Dep_Key id;
+    private EmpRelationDepKey id;
 
     @ManyToOne
     @MapsId("SSN")
@@ -29,21 +31,21 @@ public class Emp_Relation_Dep {
 
     private String Relationship;
 
-    public Emp_Relation_Dep() {
+    public EmpRelationDep() {
     }
 
-    public Emp_Relation_Dep(Emp_Relation_Dep_Key id, Employee employee, Dependence dependence, String relationship) {
+    public EmpRelationDep(EmpRelationDepKey id, Employee employee, Dependence dependence, String relationship) {
         this.id = id;
         this.employee = employee;
         this.dependence = dependence;
         this.Relationship = relationship;
     }
 
-    public Emp_Relation_Dep_Key getId() {
+    public EmpRelationDepKey getId() {
         return id;
     }
 
-    public void setId(Emp_Relation_Dep_Key id) {
+    public void setId(EmpRelationDepKey id) {
         this.id = id;
     }
 

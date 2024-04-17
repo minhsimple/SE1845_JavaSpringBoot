@@ -6,18 +6,18 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public class Emp_WorkOn_Pro_Key implements Serializable {
+public class EmpWorkOnProKey implements Serializable {
     @Column(name = "SSN")
     private String SSN;
 
     @Column(name = "ProNo")
     private String ProNo;
 
-    public Emp_WorkOn_Pro_Key() {
+    public EmpWorkOnProKey() {
 
     }
 
-    public Emp_WorkOn_Pro_Key(String SSN, String ProNo) {
+    public EmpWorkOnProKey(String SSN, String ProNo) {
         this.SSN = SSN;
         this.ProNo = ProNo;
     }
@@ -53,7 +53,7 @@ public class Emp_WorkOn_Pro_Key implements Serializable {
             return true;
         if (obj == null || getClass() != obj.getClass())
             return false;
-        Emp_WorkOn_Pro_Key other = (Emp_WorkOn_Pro_Key) obj;
+        EmpWorkOnProKey other = (EmpWorkOnProKey) obj;
         if (SSN == null) {
             if (other.SSN != null)
                 return false;

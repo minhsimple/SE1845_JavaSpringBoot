@@ -6,7 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public class Emp_Relation_Dep_Key implements Serializable {
+public class EmpRelationDepKey implements Serializable {
 
     @Column(name = "SSN")
     private String SSN;
@@ -14,10 +14,10 @@ public class Emp_Relation_Dep_Key implements Serializable {
     @Column(name = "DepID")
     private String DepID;
 
-    public Emp_Relation_Dep_Key() {
+    public EmpRelationDepKey() {
     }
 
-    public Emp_Relation_Dep_Key(String SSN, String DepID) {
+    public EmpRelationDepKey(String SSN, String DepID) {
         this.SSN = SSN;
         this.DepID = DepID;
     }
@@ -53,7 +53,7 @@ public class Emp_Relation_Dep_Key implements Serializable {
             return true;
         if (obj == null || getClass() != obj.getClass())
             return false;
-        Emp_Relation_Dep_Key other = (Emp_Relation_Dep_Key) obj;
+        EmpRelationDepKey other = (EmpRelationDepKey) obj;
         if (SSN == null) {
             if (other.SSN != null)
                 return false;

@@ -26,22 +26,22 @@ public class Employee {
 
     @OneToMany(mappedBy = "employee")
     @JsonManagedReference
-    Set<Emp_WorkOn_Pro> ewps;
+    Set<EmpWorkOnPro> ewps;
 
     @OneToMany(mappedBy = "employee")
     @JsonManagedReference
-    Set<Emp_Relation_Dep> erds;
+    Set<EmpRelationDep> erds;
 
     @ManyToOne
     @JoinColumn(name = "DeptNo")
     @JsonBackReference
     private Department dept;
 
-    public Set<Emp_Relation_Dep> getErds() {
+    public Set<EmpRelationDep> getErds() {
         return erds;
     }
 
-    public Set<Emp_WorkOn_Pro> getEwps() {
+    public Set<EmpWorkOnPro> getEwps() {
         return ewps;
     }
 
@@ -101,11 +101,11 @@ public class Employee {
         this.dept = dept;
     }
 
-    public void setEwps(Set<Emp_WorkOn_Pro> ewps) {
+    public void setEwps(Set<EmpWorkOnPro> ewps) {
         this.ewps = ewps;
     }
 
-    public void setErds(Set<Emp_Relation_Dep> erds) {
+    public void setErds(Set<EmpRelationDep> erds) {
         this.erds = erds;
     }
 }
