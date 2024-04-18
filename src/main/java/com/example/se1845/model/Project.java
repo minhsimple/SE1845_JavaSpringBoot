@@ -19,6 +19,7 @@ public class Project {
     @Column(name = "ProNo")
     private String proNo;
 
+    @Column(name = "Name")
     private String name;
 
     @Column(name = "StartDate")
