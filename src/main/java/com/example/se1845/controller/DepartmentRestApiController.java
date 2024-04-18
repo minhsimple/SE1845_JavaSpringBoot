@@ -23,16 +23,19 @@ public class DepartmentRestApiController {
     @Autowired
     private DepartmentService departmentService;
 
-
     @GetMapping
     public Iterable<Department> getAllDepartments() {
         return departmentService.getAllDepartment();
     }
 
-    @GetMapping("/{deptId}")
-    public Optional<Department> getDepartmentById(@PathVariable String deptId) {
-        return departmentService.getDepartmentById(deptId);
+    @GetMapping("/{deptNo}")
+    public Optional<Department> getDepartmentById(@PathVariable String deptNo) {
+        return departmentService.getDepartmentById(deptNo);
     }
+    // @GetMapping("/{deptId}")
+    // public Department getDepartmentById(@PathVariable String deptId) {
+    // return departmentService.getOneByDeptNo(deptId);
+    // }
 
     @PostMapping
     public ResponseEntity<Object> createDepartment(@RequestBody Department department) {
@@ -40,12 +43,12 @@ public class DepartmentRestApiController {
     }
 
     @PutMapping("/{deptId}")
-    public ResponseEntity<Object> updateDepartment(@PathVariable String deptId, @RequestBody Department department) {
-        return departmentService.updateDepartment(deptId, department);
+    public ResponseEntity<Object> updateDepartment(@PathVariable String deptNo, @RequestBody Department department) {
+        return departmentService.updateDepartment(deptNo, department);
     }
 
     @DeleteMapping("/{deptId}")
-    public ResponseEntity<Object> deleteDepartment(@PathVariable String deptId) {
-        return departmentService.deleteDepartment(deptId);
+    public ResponseEntity<Object> deleteDepartment(@PathVariable String deptNo) {
+        return departmentService.deleteDepartment(deptNo);
     }
 }

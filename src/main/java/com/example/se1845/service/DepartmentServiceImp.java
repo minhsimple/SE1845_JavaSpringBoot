@@ -22,15 +22,20 @@ public class DepartmentServiceImp implements DepartmentService {
     }
 
     @Override
-    public ResponseEntity<Object> updateDepartment(String deptId, Department depart) {
-        return (departmentRepository.existsById(deptId))
+    public ResponseEntity<Object> updateDepartment(String deptNo, Department depart) {
+        return (departmentRepository.existsById(deptNo))
                 ? new ResponseEntity<>(departmentRepository.save(depart), HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @Override
-    public Optional<Department> getDepartmentById(String deptId) {
-        return departmentRepository.findById(deptId);
+    public Optional<Department> getDepartmentById(String deptNo) {
+        return departmentRepository.findById(deptNo);
+    }
+
+    @Override
+    public Department getOneByDeptNo(String deptNo) {
+        return departmentRepository.findOneByDeptno(deptNo);
     }
 
     @Override
@@ -39,8 +44,8 @@ public class DepartmentServiceImp implements DepartmentService {
     }
 
     @Override
-    public ResponseEntity<Object> deleteDepartment(String deptId) {
-        departmentRepository.deleteById(deptId);
+    public ResponseEntity<Object> deleteDepartment(String deptNo) {
+        departmentRepository.deleteById(deptNo);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

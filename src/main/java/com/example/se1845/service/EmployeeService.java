@@ -1,19 +1,19 @@
 package com.example.se1845.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import com.example.se1845.model.Employee;
+import com.example.se1845.dto.EmployeeDTO;
 
 public interface EmployeeService {
-    public ResponseEntity<Object> createEmployee(Employee employee);
+    public ResponseEntity<Object> createEmployee(EmployeeDTO employeeDto);
 
-    public ResponseEntity<Object> updateEmployee(String ssn, Employee employee);
+    public ResponseEntity<Object> updateEmployee(String ssn, EmployeeDTO employeeDto);
 
-    public Optional<Employee> getEmployeeById(String ssn);
+    public ResponseEntity<Object> getEmployeeById(String ssn);
 
-    public Iterable<Employee> getAllEmployee();
+    public List<EmployeeDTO> getAllEmployee();
 
     public ResponseEntity<Object> deleteEmployee(String ssn);
 }
