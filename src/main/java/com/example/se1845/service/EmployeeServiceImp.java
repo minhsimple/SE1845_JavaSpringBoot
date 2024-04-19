@@ -46,9 +46,8 @@ public class EmployeeServiceImp implements EmployeeService {
             employee.setDept(department);
             employeeRepository.save(employee);
             return new ResponseEntity<>(employeeDto, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @Override

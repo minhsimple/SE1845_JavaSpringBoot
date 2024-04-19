@@ -1,6 +1,6 @@
 package com.example.se1845.controller;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.se1845.model.Dependence;
+import com.example.se1845.dto.DependenceDTO;
 import com.example.se1845.service.DependenceService;
 
 @RestController
@@ -24,23 +24,23 @@ public class DependenceRestApiController {
     private DependenceService dependenceService;
 
     @GetMapping
-    public Iterable<Dependence> getAllDependences() {
+    public List<DependenceDTO> getAllDependences() {
         return dependenceService.getAllDependence();
     }
 
     @GetMapping("/{depId}")
-    public Optional<Dependence> getDependenceById(String depId) {
+    public ResponseEntity<Object> getDependenceById(@PathVariable String depId) {
         return dependenceService.getDependenceById(depId);
     }
 
     @PostMapping
-    public ResponseEntity<Object> createDependence(@RequestBody Dependence dep) {
-        return dependenceService.createDependence(dep);
+    public ResponseEntity<Object> createDependence(@RequestBody DependenceDTO depDto) {
+        return dependenceService.createDependence(depDto);
     }
 
     @PutMapping("/{depId}")
-    public ResponseEntity<Object> updateDependence(@PathVariable String depId, @RequestBody Dependence dep) {
-        return dependenceService.updateDependence(depId, dep);
+    public ResponseEntity<Object> updateDependence(@PathVariable String depId, @RequestBody DependenceDTO depDto) {
+        return dependenceService.updateDependence(depId, depDto);
     }
 
     @DeleteMapping("/{depId}")
