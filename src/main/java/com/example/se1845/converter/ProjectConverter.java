@@ -1,5 +1,7 @@
 package com.example.se1845.converter;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Component;
 
 import com.example.se1845.dto.ProjectDTO;
@@ -7,32 +9,29 @@ import com.example.se1845.model.Project;
 
 @Component
 public class ProjectConverter {
+    private ModelMapper modelMapper;
 
-    public Project toProject(ProjectDTO proDto) {
-        Project pro = new Project();
-        pro.setProNo(proDto.getProno());
-        pro.setName(proDto.getName());
-        pro.setStartDate(proDto.getStartDate());
-        pro.setEndDate(proDto.getEndDate());
+    public ProjectConverter() {
+        modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
-        return pro;
+        modelMapper.typeMap(Project.class, ProjectDTO.class)
+                .addMappings(mapper -> {
+                    mapper.map(src -> src.getDept().getDeptno(), ProjectDTO::setDeptno);
+                });
+
+        modelMapper.typeMap(ProjectDTO.class, Project.class)
+                .addMappings(mapper -> {
+                    mapper.<String>map(ProjectDTO::getDeptno, (dest, value) -> dest.getDept().setDeptno(value));
+                    mapper.skip(Project::setEwps);
+                });
     }
 
-    public ProjectDTO toProjectDTO(Project pro) {
-        ProjectDTO proDto = new ProjectDTO();
-        proDto.setProno(pro.getProNo());
-        proDto.setName(pro.getName());
-        proDto.setStartDate(pro.getStartDate());
-        proDto.setEndDate(pro.getEndDate());
-
-        return proDto;
+    public Project toProject(ProjectDTO projectDto) {
+        return modelMapper.map(projectDto, Project.class);
     }
 
-    public Project toProject(ProjectDTO proDto, Project pro) {
-        pro.setName(proDto.getName());
-        pro.setStartDate(proDto.getStartDate());
-        pro.setEndDate(proDto.getEndDate());
-
-        return pro;
+    public ProjectDTO toProjectDTO(Project project) {
+        return modelMapper.map(project, ProjectDTO.class);
     }
 }

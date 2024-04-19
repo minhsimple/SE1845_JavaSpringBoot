@@ -32,8 +32,7 @@ public class DepartmentServiceImp implements DepartmentService {
     @Override
     public ResponseEntity<Object> updateDepartment(String deptNo, DepartmentDTO departDto) {
         if (departmentRepository.existsById(deptNo)) {
-            Department department = departmentRepository.findById(deptNo).get();
-            department = departmentConverter.toDepartment(departDto, department);
+            Department department = departmentConverter.toDepartment(departDto);
             departmentRepository.save(department);
             return new ResponseEntity<>(departDto, HttpStatus.OK);
         }

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.example.se1845.converter.ProjectConverter;
 import com.example.se1845.dto.ProjectDTO;
 import com.example.se1845.model.Project;
-import com.example.se1845.repository.DepartmentRepository;
 import com.example.se1845.repository.ProjectRepository;
 
 @Service
@@ -24,13 +23,9 @@ public class ProjectServiceImp implements ProjectService {
     @Autowired
     ProjectConverter projectConverter;
 
-    @Autowired
-    DepartmentRepository departmentRepository;
-
     @Override
     public ResponseEntity<Object> createProject(ProjectDTO proDto) {
         Project pro = projectConverter.toProject(proDto);
-        pro.setDept(departmentRepository.findById(proDto.getDeptno()).get());
         projectRepository.save(pro);
         return new ResponseEntity<>(proDto, HttpStatus.CREATED);
     }
@@ -38,9 +33,7 @@ public class ProjectServiceImp implements ProjectService {
     @Override
     public ResponseEntity<Object> updateProject(String prono, ProjectDTO proDto) {
         if (projectRepository.existsById(prono)) {
-            Project pro = projectRepository.findById(prono).get();
-            pro = projectConverter.toProject(proDto, pro);
-            pro.setDept(departmentRepository.findById(proDto.getDeptno()).get());
+            Project pro = projectConverter.toProject(proDto);
             projectRepository.save(pro);
             return new ResponseEntity<>(proDto, HttpStatus.OK);
         }
@@ -54,9 +47,7 @@ public class ProjectServiceImp implements ProjectService {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         Project pro = proOptional.get();
-        String deptno = pro.getDept().getDeptno();
         ProjectDTO proDto = projectConverter.toProjectDTO(pro);
-        proDto.setDeptno(deptno);
         return new ResponseEntity<>(proDto, HttpStatus.OK);
     }
 
@@ -65,9 +56,7 @@ public class ProjectServiceImp implements ProjectService {
         Iterable<Project> proList = projectRepository.findAll();
         List<ProjectDTO> proDtoList = new ArrayList<>();
         for (Project pro : proList) {
-            String deptno = pro.getDept().getDeptno();
             ProjectDTO proDto = projectConverter.toProjectDTO(pro);
-            proDto.setDeptno(deptno);
             proDtoList.add(proDto);
         }
         return proDtoList;

@@ -1,5 +1,7 @@
 package com.example.se1845.converter;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Component;
 
 import com.example.se1845.dto.DependenceDTO;
@@ -7,29 +9,23 @@ import com.example.se1845.model.Dependence;
 
 @Component
 public class DependenceConverter {
+    private ModelMapper modelMapper;
+
+    public DependenceConverter() {
+        modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+        modelMapper.typeMap(Dependence.class, Dependence.class)
+                .addMappings(mapper -> {
+                    mapper.skip(Dependence::setErds);
+                });
+    }
 
     public Dependence toDependence(DependenceDTO dependenceDto) {
-        Dependence dependence = new Dependence();
-        dependence.setDepId(dependenceDto.getDepId());
-        dependence.setName(dependenceDto.getName());
-        dependence.setDob(dependenceDto.getDob());
-
-        return dependence;
+        return modelMapper.map(dependenceDto, Dependence.class);
     }
 
     public DependenceDTO toDependenceDTO(Dependence dependence) {
-        DependenceDTO dependenceDto = new DependenceDTO();
-        dependenceDto.setDepId(dependence.getDepId());
-        dependenceDto.setName(dependence.getName());
-        dependenceDto.setDob(dependence.getDob());
-
-        return dependenceDto;
-    }
-
-    public Dependence toDependence(DependenceDTO dependenceDto, Dependence dependence) {
-        dependence.setName(dependenceDto.getName());
-        dependence.setDob(dependenceDto.getDob());
-
-        return dependence;
+        return modelMapper.map(dependence, DependenceDTO.class);
     }
 }

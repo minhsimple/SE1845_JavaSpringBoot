@@ -33,8 +33,7 @@ public class DependenceServiceImp implements DependenceService {
     @Override
     public ResponseEntity<Object> updateDependence(String depId, DependenceDTO depDto) {
         if (depRepo.existsById(depId)) {
-            Dependence dependence = depRepo.findById(depId).get();
-            dependence = depConverter.toDependence(depDto, dependence);
+            Dependence dependence = depConverter.toDependence(depDto);
             depRepo.save(dependence);
             return new ResponseEntity<>(depDto, HttpStatus.OK);
         }

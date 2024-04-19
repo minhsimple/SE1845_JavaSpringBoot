@@ -1,5 +1,7 @@
 package com.example.se1845.converter;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Component;
 
 import com.example.se1845.dto.DepartmentDTO;
@@ -7,29 +9,24 @@ import com.example.se1845.model.Department;
 
 @Component
 public class DepartmentConverter {
+    private ModelMapper modelMapper;
+
+    public DepartmentConverter() {
+        modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+        modelMapper.typeMap(DepartmentDTO.class, Department.class)
+                .addMappings(mapper -> {
+                    mapper.skip(Department::setEmps);
+                    mapper.skip(Department::setPros);
+                });
+    }
 
     public Department toDepartment(DepartmentDTO departmentDto) {
-        Department department = new Department();
-        department.setDeptno(departmentDto.getDeptno());
-        department.setName(departmentDto.getName());
-        department.setLocation(departmentDto.getLocation());
-
-        return department;
+        return modelMapper.map(departmentDto, Department.class);
     }
 
     public DepartmentDTO toDepartmentDTO(Department department) {
-        DepartmentDTO departmentDto = new DepartmentDTO();
-        departmentDto.setDeptno(department.getDeptno());
-        departmentDto.setName(department.getName());
-        departmentDto.setLocation(department.getLocation());
-
-        return departmentDto;
-    }
-
-    public Department toDepartment(DepartmentDTO departmentDto, Department department) {
-        department.setName(departmentDto.getName());
-        department.setLocation(departmentDto.getLocation());
-
-        return department;
+        return modelMapper.map(department, DepartmentDTO.class);
     }
 }
