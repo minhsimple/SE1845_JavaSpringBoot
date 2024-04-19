@@ -1,19 +1,19 @@
 package com.example.se1845.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import com.example.se1845.model.Project;
+import com.example.se1845.dto.ProjectDTO;
 
 public interface ProjectService {
-    public ResponseEntity<Object> createProject(Project pro);
+    public ResponseEntity<Object> createProject(ProjectDTO proDto);
 
-    public ResponseEntity<Object> updateProject(String proNo, Project pro);
+    public ResponseEntity<Object> updateProject(String prono, ProjectDTO proDto);
 
-    public Optional<Project> getProjectById(String proNo);
+    public ResponseEntity<Object> getProjectById(String prono);
 
-    public Iterable<Project> getAllProject();
+    public List<ProjectDTO> getAllProject();
 
-    public ResponseEntity<Object> deleteProject(String proNo);
+    public ResponseEntity<Object> deleteProject(String prono);
 }
