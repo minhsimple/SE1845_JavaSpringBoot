@@ -66,11 +66,11 @@ public class Department {
         this.location = Location;
     }
 
-    public void setEmps( List<Employee> emps) {
+    public void setEmps(List<Employee> emps) {
         this.emps = emps;
     }
 
-    public void setPros( List<Project> pros) {
+    public void setPros(List<Project> pros) {
         this.pros = pros;
     }
 
