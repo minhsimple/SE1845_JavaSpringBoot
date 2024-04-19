@@ -1,21 +1,22 @@
 package com.example.se1845.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import com.example.se1845.dto.DepartmentDTO;
 import com.example.se1845.model.Department;
 
 public interface DepartmentService {
-    public ResponseEntity<Object> createDepartment(Department depart);
+    public ResponseEntity<Object> createDepartment(DepartmentDTO departDto);
 
-    public ResponseEntity<Object> updateDepartment(String deptNo, Department depart);
+    public ResponseEntity<Object> updateDepartment(String deptNo, DepartmentDTO departDto);
 
-    public Optional<Department> getDepartmentById(String deptNo);
+    public ResponseEntity<Object> getDepartmentById(String deptNo);
 
     public Department getOneByDeptNo(String deptNo);
 
-    public Iterable<Department> getAllDepartment();
+    public List<DepartmentDTO> getAllDepartment();
 
     public ResponseEntity<Object> deleteDepartment(String deptNo);
 }
