@@ -15,7 +15,7 @@ public class DependenceConverter {
         modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
-        modelMapper.typeMap(Dependence.class, Dependence.class)
+        modelMapper.typeMap(DependenceDTO.class, Dependence.class)
                 .addMappings(mapper -> {
                     mapper.skip(Dependence::setErds);
                 });
