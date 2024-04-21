@@ -64,8 +64,11 @@ public class EmployeeServiceImp implements EmployeeService {
 
     @Override
     public ResponseEntity<Object> deleteEmployee(String ssn) {
-        employeeRepository.deleteById(ssn);
-        return new ResponseEntity<>(HttpStatus.OK);
+        if (employeeRepository.existsById(ssn)) {
+            employeeRepository.deleteById(ssn);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 }

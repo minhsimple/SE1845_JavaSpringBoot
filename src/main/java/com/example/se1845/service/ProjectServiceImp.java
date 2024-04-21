@@ -64,7 +64,10 @@ public class ProjectServiceImp implements ProjectService {
 
     @Override
     public ResponseEntity<Object> deleteProject(String proNo) {
-        projectRepository.deleteById(proNo);
-        return new ResponseEntity<>(HttpStatus.OK);
+        if (projectRepository.existsById(proNo)) {
+            projectRepository.deleteById(proNo);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

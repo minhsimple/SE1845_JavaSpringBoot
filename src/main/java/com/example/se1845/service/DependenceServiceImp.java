@@ -62,8 +62,11 @@ public class DependenceServiceImp implements DependenceService {
 
     @Override
     public ResponseEntity<Object> deleteDependence(String depId) {
-        depRepo.deleteById(depId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        if (depRepo.existsById(depId)) {
+            depRepo.deleteById(depId);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 }

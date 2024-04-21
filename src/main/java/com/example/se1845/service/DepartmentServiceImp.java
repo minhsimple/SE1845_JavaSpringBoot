@@ -66,8 +66,11 @@ public class DepartmentServiceImp implements DepartmentService {
 
     @Override
     public ResponseEntity<Object> deleteDepartment(String deptNo) {
-        departmentRepository.deleteById(deptNo);
-        return new ResponseEntity<>(HttpStatus.OK);
+        if (departmentRepository.existsById(deptNo)) {
+            departmentRepository.deleteById(deptNo);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 }
