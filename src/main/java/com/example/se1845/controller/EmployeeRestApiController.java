@@ -1,6 +1,6 @@
 package com.example.se1845.controller;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.se1845.model.Employee;
+import com.example.se1845.dto.EmployeeDTO;
 import com.example.se1845.service.EmployeeService;
 
 @RestController
@@ -24,23 +24,23 @@ public class EmployeeRestApiController {
     private EmployeeService employeeService;
 
     @GetMapping
-    public Iterable<Employee> getAllEmployees() {
+    public List<EmployeeDTO> getAllEmployees() {
         return employeeService.getAllEmployee();
     }
 
     @GetMapping("/{ssn}")
-    public Optional<Employee> getEmployeeBySsn(@PathVariable String ssn) {
+    public ResponseEntity<Object> getEmployeeBySsn(@PathVariable String ssn) {
         return employeeService.getEmployeeById(ssn);
     }
 
     @PostMapping
-    public ResponseEntity<Object> createEmployee(@RequestBody Employee employee) {
-        return employeeService.createEmployee(employee);
+    public ResponseEntity<Object> createEmployee(@RequestBody EmployeeDTO employeeDto) {
+        return employeeService.createEmployee(employeeDto);
     }
 
     @PutMapping("/{ssn}")
-    public ResponseEntity<Object> updateEmployee(@PathVariable String ssn, @RequestBody Employee employee) {
-        return employeeService.updateEmployee(ssn, employee);
+    public ResponseEntity<Object> updateEmployee(@PathVariable String ssn, @RequestBody EmployeeDTO employeeDto) {
+        return employeeService.updateEmployee(ssn, employeeDto);
     }
 
     @DeleteMapping("/{ssn}")

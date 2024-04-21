@@ -1,6 +1,6 @@
 package com.example.se1845.controller;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.se1845.model.Department;
+import com.example.se1845.dto.DepartmentDTO;
 import com.example.se1845.service.DepartmentService;
 
 @RestController
@@ -23,29 +23,29 @@ public class DepartmentRestApiController {
     @Autowired
     private DepartmentService departmentService;
 
-
     @GetMapping
-    public Iterable<Department> getAllDepartments() {
+    public List<DepartmentDTO> getAllDepartments() {
         return departmentService.getAllDepartment();
     }
 
-    @GetMapping("/{deptId}")
-    public Optional<Department> getDepartmentById(@PathVariable String deptId) {
-        return departmentService.getDepartmentById(deptId);
+    @GetMapping("/{deptNo}")
+    public ResponseEntity<Object> getDepartmentById(@PathVariable String deptNo) {
+        return departmentService.getDepartmentById(deptNo);
     }
 
     @PostMapping
-    public ResponseEntity<Object> createDepartment(@RequestBody Department department) {
-        return departmentService.createDepartment(department);
+    public ResponseEntity<Object> createDepartment(@RequestBody DepartmentDTO departmentDto) {
+        return departmentService.createDepartment(departmentDto);
     }
 
-    @PutMapping("/{deptId}")
-    public ResponseEntity<Object> updateDepartment(@PathVariable String deptId, @RequestBody Department department) {
-        return departmentService.updateDepartment(deptId, department);
+    @PutMapping("/{deptNo}")
+    public ResponseEntity<Object> updateDepartment(@PathVariable String deptNo,
+            @RequestBody DepartmentDTO departmentDto) {
+        return departmentService.updateDepartment(deptNo, departmentDto);
     }
 
-    @DeleteMapping("/{deptId}")
-    public ResponseEntity<Object> deleteDepartment(@PathVariable String deptId) {
-        return departmentService.deleteDepartment(deptId);
+    @DeleteMapping("/{deptNo}")
+    public ResponseEntity<Object> deleteDepartment(@PathVariable String deptNo) {
+        return departmentService.deleteDepartment(deptNo);
     }
 }

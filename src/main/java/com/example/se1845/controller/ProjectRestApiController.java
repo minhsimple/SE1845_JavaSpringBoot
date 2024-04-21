@@ -1,6 +1,6 @@
 package com.example.se1845.controller;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.se1845.model.Project;
+import com.example.se1845.dto.ProjectDTO;
 import com.example.se1845.service.ProjectService;
 
 @RestController
@@ -24,27 +24,27 @@ public class ProjectRestApiController {
     private ProjectService projectService;
 
     @GetMapping
-    public Iterable<Project> getAllProjects() {
+    public List<ProjectDTO> getAllProjects() {
         return projectService.getAllProject();
     }
 
-    @GetMapping("/{proNo}")
-    public Optional<Project> getProjectById(String proNo) {
-        return projectService.getProjectById(proNo);
+    @GetMapping("/{prono}")
+    public ResponseEntity<Object> getProjectById(@PathVariable String prono) {
+        return projectService.getProjectById(prono);
     }
 
     @PostMapping
-    public ResponseEntity<Object> createProject(@RequestBody Project pro) {
-        return projectService.createProject(pro);
+    public ResponseEntity<Object> createProject(@RequestBody ProjectDTO proDto) {
+        return projectService.createProject(proDto);
     }
 
-    @PutMapping("/{proNo}")
-    public ResponseEntity<Object> updateProject(@PathVariable String proNo, @RequestBody Project pro) {
-        return projectService.updateProject(proNo, pro);
+    @PutMapping("/{prono}")
+    public ResponseEntity<Object> updateProject(@PathVariable String prono, @RequestBody ProjectDTO proDto) {
+        return projectService.updateProject(prono, proDto);
     }
 
-    @DeleteMapping("/{proNo}")
-    public ResponseEntity<Object> deleteProject(@PathVariable String proNo) {
-        return projectService.deleteProject(proNo);
+    @DeleteMapping("/{prono}")
+    public ResponseEntity<Object> deleteProject(@PathVariable String prono) {
+        return projectService.deleteProject(prono);
     }
 }

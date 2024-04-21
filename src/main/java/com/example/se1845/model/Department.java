@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -13,9 +14,13 @@ import jakarta.persistence.OneToMany;
 public class Department {
 
     @Id
+    @Column(name = "DeptNo")
     private String deptno;
 
+    @Column(name = "Name")
     private String name;
+
+    @Column(name = "Location")
     private String location;
 
     public Department() {
@@ -61,11 +66,11 @@ public class Department {
         this.location = Location;
     }
 
-    public void setEmps( List<Employee> emps) {
+    public void setEmps(List<Employee> emps) {
         this.emps = emps;
     }
 
-    public void setPros( List<Project> pros) {
+    public void setPros(List<Project> pros) {
         this.pros = pros;
     }
 

@@ -17,8 +17,9 @@ public class Project {
 
     @Id
     @Column(name = "ProNo")
-    private String proNo;
+    private String prono;
 
+    @Column(name = "Name")
     private String name;
 
     @Column(name = "StartDate")
@@ -47,8 +48,8 @@ public class Project {
         return dept;
     }
 
-    public String getProNo() {
-        return proNo;
+    public String getProno() {
+        return prono;
     }
 
     public String getName() {
@@ -63,8 +64,8 @@ public class Project {
         return endDate;
     }
 
-    public void setProNo(String ProNo) {
-        this.proNo = ProNo;
+    public void setProno(String ProNo) {
+        this.prono = ProNo;
     }
 
     public void setName(String Name) {

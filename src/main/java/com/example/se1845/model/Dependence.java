@@ -4,6 +4,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -12,9 +13,13 @@ import jakarta.persistence.OneToMany;
 public class Dependence {
 
     @Id
+    @Column(name = "DepID")
     private String depId;
 
+    @Column(name = "Name")
     private String name;
+
+    @Column(name = "DOB")
     private String dob;
 
     @OneToMany(mappedBy = "dependence")
