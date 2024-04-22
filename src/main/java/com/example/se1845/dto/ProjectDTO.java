@@ -2,7 +2,13 @@ package com.example.se1845.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProjectDTO {
 
     @NotNull(message = "project number is required")
@@ -24,47 +30,4 @@ public class ProjectDTO {
     @NotNull(message = "department number is required")
     @NotBlank(message = "department number is required")
     private String deptno;
-
-    public ProjectDTO() {
-    }
-
-    public String getProno() {
-        return prono;
-    }
-
-    public void setProno(String prono) {
-        this.prono = prono;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getDeptno() {
-        return deptno;
-    }
-
-    public void setDeptno(String deptno) {
-        this.deptno = deptno;
-    }
 }

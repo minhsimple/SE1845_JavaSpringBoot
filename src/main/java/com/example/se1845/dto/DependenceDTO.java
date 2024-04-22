@@ -2,7 +2,13 @@ package com.example.se1845.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class DependenceDTO {
 
     @NotNull(message = "dependence id is required")
@@ -16,31 +22,4 @@ public class DependenceDTO {
     @NotNull(message = "date of birth is required")
     @NotBlank(message = "date of birth is required")
     private String dob;
-
-    public DependenceDTO() {
-    }
-
-    public String getDepId() {
-        return depId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDob() {
-        return dob;
-    }
-
-    public void setDepId(String depId) {
-        this.depId = depId;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDob(String dob) {
-        this.dob = dob;
-    }
 }

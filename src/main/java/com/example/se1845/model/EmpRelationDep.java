@@ -10,8 +10,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "Emp_Relation_Dep")
 public class EmpRelationDep {
 
@@ -32,47 +38,4 @@ public class EmpRelationDep {
 
     @Column(name = "Relationship")
     private String relationship;
-
-    public EmpRelationDep() {
-    }
-
-    public EmpRelationDep(EmpRelationDepKey id, Employee employee, Dependence dependence, String relationship) {
-        this.id = id;
-        this.employee = employee;
-        this.dependence = dependence;
-        this.relationship = relationship;
-    }
-
-    public EmpRelationDepKey getId() {
-        return id;
-    }
-
-    public void setId(EmpRelationDepKey id) {
-        this.id = id;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public Dependence getDependence() {
-        return dependence;
-    }
-
-    public void setDependence(Dependence dependence) {
-        this.dependence = dependence;
-    }
-
-    public String getRelationship() {
-        return relationship;
-    }
-
-    public void setRelationship(String relationship) {
-        this.relationship = relationship;
-    }
-
 }
