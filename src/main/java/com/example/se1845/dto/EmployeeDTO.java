@@ -22,7 +22,6 @@ public class EmployeeDTO {
     @NotBlank(message = "address is required")
     private String address;
 
-    @NotNull(message = "salary is required")
     @Min(value = 1, message = "salary must be greater than 0")
     private double salary;
 
