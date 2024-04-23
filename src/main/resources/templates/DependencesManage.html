@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="dependencelist" th:unless="${#lists.isEmpty(dependences)}">
+        <h2>Dependence list</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Dependence id</th>
+                    <th>Name</th>
+                    <th>DOB</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="dep : ${dependences}">
+                    <td th:text="${dep.depId}"></td>
+                    <td th:text="${dep.name}"></td>
+                    <td th:text="${dep.dob}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

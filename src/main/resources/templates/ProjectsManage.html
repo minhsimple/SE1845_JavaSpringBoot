@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+</head>
+
+<body>
+    <div class="projectlist" th:unless="${#lists.isEmpty(projects)}">
+        <h2>Employee list</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Project no</th>
+                    <th>Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Department no</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pro : ${projects}">
+                    <td th:text="${pro.prono}"></td>
+                    <td th:text="${pro.name}"></td>
+                    <td th:text="${pro.startDate}"></td>
+                    <td th:text="${pro.endDate}"></td>
+                    <td th:text="${pro.deptno}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

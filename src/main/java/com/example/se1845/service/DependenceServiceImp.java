@@ -41,13 +41,13 @@ public class DependenceServiceImp implements DependenceService {
     }
 
     @Override
-    public ResponseEntity<Object> getDependenceById(String depId) {
+    public DependenceDTO getDependenceById(String depId) {
         Optional<Dependence> dependence = depRepo.findById(depId);
         if (!dependence.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return null;
         }
         DependenceDTO depDto = depConverter.toDependenceDTO(dependence.get());
-        return new ResponseEntity<>(depDto, HttpStatus.OK);
+        return depDto;
     }
 
     @Override

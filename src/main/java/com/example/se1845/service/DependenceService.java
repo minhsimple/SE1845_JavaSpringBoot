@@ -11,7 +11,7 @@ public interface DependenceService {
 
     public ResponseEntity<Object> updateDependence(String depId, DependenceDTO dep);
 
-    public ResponseEntity<Object> getDependenceById(String depId);
+    public DependenceDTO getDependenceById(String depId);
 
     public List<DependenceDTO> getAllDependence();
 

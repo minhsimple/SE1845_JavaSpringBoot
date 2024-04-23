@@ -11,7 +11,7 @@ public interface EmployeeService {
 
     public ResponseEntity<Object> updateEmployee(String ssn, EmployeeDTO employeeDto);
 
-    public ResponseEntity<Object> getEmployeeById(String ssn);
+    public EmployeeDTO getEmployeeById(String ssn);
 
     public List<EmployeeDTO> getAllEmployee();
 

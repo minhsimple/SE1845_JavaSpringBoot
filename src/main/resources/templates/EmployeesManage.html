@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees</title>
+</head>
+
+<body>
+    <div class="employeelist" th:unless="${#lists.isEmpty(employees)}">
+        <h2>Employee list</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>SSN</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Address</th>
+                    <th>Salary</th>
+                    <th>Sex</th>
+                    <th>Department no</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="emp : ${employees}">
+                    <td th:text="${emp.ssn}"></td>
+                    <td th:text="${emp.fname}"></td>
+                    <td th:text="${emp.lname}"></td>
+                    <td th:text="${emp.address}"></td>
+                    <td th:text="${emp.salary}"></td>
+                    <td th:text="${emp.sex}"></td>
+                    <td th:text="${emp.deptNo}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <form action="#" th:action="@{/employees/search}" method="get">
+        <table>
+            <tr>
+                <td>SEARCH SSN: </td>
+                <td><input type="text" name="ssn" required></td>
+                <td><input type="submit" name="submit" value="submit"></td>
+                <td><input type="reset" value="clear"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

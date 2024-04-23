@@ -11,7 +11,7 @@ public interface ProjectService {
 
     public ResponseEntity<Object> updateProject(String prono, ProjectDTO proDto);
 
-    public ResponseEntity<Object> getProjectById(String prono);
+    public ProjectDTO getProjectById(String prono);
 
     public List<ProjectDTO> getAllProject();
 

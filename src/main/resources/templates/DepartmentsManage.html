@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="departmentlist" th:unless="${#lists.isEmpty(departments)}">
+        <h2>Departments list</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Department no</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="dept : ${departments}">
+                    <td th:text="${dept.deptno}"></td>
+                    <td th:text="${dept.name}"></td>
+                    <td th:text="${dept.location}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

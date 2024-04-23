@@ -41,14 +41,14 @@ public class ProjectServiceImp implements ProjectService {
     }
 
     @Override
-    public ResponseEntity<Object> getProjectById(String prono) {
+    public ProjectDTO getProjectById(String prono) {
         Optional<Project> proOptional = projectRepository.findById(prono);
         if (!proOptional.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return null;
         }
         Project pro = proOptional.get();
         ProjectDTO proDto = projectConverter.toProjectDTO(pro);
-        return new ResponseEntity<>(proDto, HttpStatus.OK);
+        return proDto;
     }
 
     @Override

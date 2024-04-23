@@ -40,13 +40,13 @@ public class DepartmentServiceImp implements DepartmentService {
     }
 
     @Override
-    public ResponseEntity<Object> getDepartmentById(String deptNo) {
+    public DepartmentDTO getDepartmentById(String deptNo) {
         if (!departmentRepository.existsById(deptNo)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return null;
         }
         Department department = departmentRepository.findById(deptNo).get();
         DepartmentDTO departmentDto = departmentConverter.toDepartmentDTO(department);
-        return new ResponseEntity<>(departmentDto, HttpStatus.OK);
+        return departmentDto;
     }
 
     @Override

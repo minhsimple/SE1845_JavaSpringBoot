@@ -12,7 +12,7 @@ public interface DepartmentService {
 
     public ResponseEntity<Object> updateDepartment(String deptNo, DepartmentDTO departDto);
 
-    public ResponseEntity<Object> getDepartmentById(String deptNo);
+    public DepartmentDTO getDepartmentById(String deptNo);
 
     public Department getOneByDeptNo(String deptNo);
 

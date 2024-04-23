@@ -41,14 +41,14 @@ public class EmployeeServiceImp implements EmployeeService {
     }
 
     @Override
-    public ResponseEntity<Object> getEmployeeById(String ssn) {
+    public EmployeeDTO getEmployeeById(String ssn) {
         Optional<Employee> employeeOptional = employeeRepository.findById(ssn);
         if (!employeeOptional.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return null;
         }
         Employee employee = employeeOptional.get();
         EmployeeDTO employeeDto = employeeConverter.toEmployeeDTO(employee);
-        return new ResponseEntity<>(employeeDto, HttpStatus.OK);
+        return employeeDto;
     }
 
     @Override

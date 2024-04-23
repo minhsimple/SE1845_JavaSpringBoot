@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Form</title>
+</head>
+
+<body>
+    <form action="#" th:action="@{/employees/add}" th:object="${employeeDto}" method="post">
+        <table>
+            <tr>
+                <td>SSN</td>
+                <td><input type="text" th:field="*{ssn}" required></td>
+            </tr>
+            <tr>
+                <td>FName</td>
+                <td><input type="text" th:field="*{fname}" required></td>
+            </tr>
+            <tr>
+                <td>LName</td>
+                <td><input type="text" th:field="*{lname}" required></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><input type="text" th:field="*{address}" required></td>
+            </tr>
+            <tr>
+                <td>Salary</td>
+                <td><input type="number" th:field="*{salary}" required></td>
+            </tr>
+            <tr>
+                <td>Sex</td>
+                <td><input type="radio" th:field="*{sex}" checked value="1">Male
+                    <input type="radio" th:field="*{sex}" value="0">Female</td>
+            </tr>
+            <tr>
+                <td>DeptNo</td>
+                <td><input type="text" th:field="*{deptNo}" required></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="submit" value="submit"></td>
+                <td><input type="reset" value="clear"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>
