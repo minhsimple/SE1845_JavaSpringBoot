@@ -5,21 +5,29 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Department {
 
     @Id
+    @Column(name = "DeptNo")
     private String deptno;
 
+    @Column(name = "Name")
     private String name;
-    private String location;
 
-    public Department() {
-    }
+    @Column(name = "Location")
+    private String location;
 
     @OneToMany(mappedBy = "dept")
     @JsonManagedReference
@@ -28,45 +36,4 @@ public class Department {
     @OneToMany(mappedBy = "dept")
     @JsonManagedReference
     private List<Project> pros = new ArrayList<>();
-
-    public List<Project> getPros() {
-        return pros;
-    }
-
-    public List<Employee> getEmps() {
-        return emps;
-    }
-
-    public String getDeptno() {
-        return deptno;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setDeptno(String DeptNo) {
-        this.deptno = DeptNo;
-    }
-
-    public void setName(String Name) {
-        this.name = Name;
-    }
-
-    public void setLocation(String Location) {
-        this.location = Location;
-    }
-
-    public void setEmps( List<Employee> emps) {
-        this.emps = emps;
-    }
-
-    public void setPros( List<Project> pros) {
-        this.pros = pros;
-    }
-
 }

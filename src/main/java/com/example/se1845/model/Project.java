@@ -11,14 +11,21 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Project {
 
     @Id
     @Column(name = "ProNo")
-    private String proNo;
+    private String prono;
 
+    @Column(name = "Name")
     private String name;
 
     @Column(name = "StartDate")
@@ -26,9 +33,6 @@ public class Project {
 
     @Column(name = "EndDate")
     private String endDate;
-
-    public Project() {
-    }
 
     @OneToMany(mappedBy = "project")
     @JsonManagedReference
@@ -38,53 +42,4 @@ public class Project {
     @JoinColumn(name = "DeptNo")
     @JsonBackReference
     private Department dept;
-
-    public Set<EmpWorkOnPro> getEwps() {
-        return ewps;
-    }
-
-    public Department getDept() {
-        return dept;
-    }
-
-    public String getProNo() {
-        return proNo;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setProNo(String ProNo) {
-        this.proNo = ProNo;
-    }
-
-    public void setName(String Name) {
-        this.name = Name;
-    }
-
-    public void setStartDate(String StartDate) {
-        this.startDate = StartDate;
-    }
-
-    public void setEndDate(String EndDate) {
-        this.endDate = EndDate;
-    }
-
-    public void setDept(Department dept) {
-        this.dept = dept;
-    }
-
-    public void setEwps(Set<EmpWorkOnPro> ewps) {
-        this.ewps = ewps;
-    }
-
 }

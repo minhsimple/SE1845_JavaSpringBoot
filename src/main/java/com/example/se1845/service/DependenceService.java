@@ -1,19 +1,19 @@
 package com.example.se1845.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import com.example.se1845.model.Dependence;
+import com.example.se1845.dto.DependenceDTO;
 
 public interface DependenceService {
-    public ResponseEntity<Object> createDependence(Dependence dep);
+    public ResponseEntity<Object> createDependence(DependenceDTO dep);
 
-    public ResponseEntity<Object> updateDependence(String depId, Dependence dep);
+    public ResponseEntity<Object> updateDependence(String depId, DependenceDTO dep);
 
-    public Optional<Dependence> getDependenceById(String depId);
+    public ResponseEntity<Object> getDependenceById(String depId);
 
-    public Iterable<Dependence> getAllDependence();
+    public List<DependenceDTO> getAllDependence();
 
     public ResponseEntity<Object> deleteDependence(String depId);
 }
