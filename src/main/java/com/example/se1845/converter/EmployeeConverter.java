@@ -18,6 +18,7 @@ public class EmployeeConverter {
         modelMapper.typeMap(Employee.class, EmployeeDTO.class)
                 .addMappings(mapper -> {
                     mapper.map(src -> src.getDept().getDeptno(), EmployeeDTO::setDeptNo);
+                    mapper.map(src -> src.getRole().getRoleid(), EmployeeDTO::setRoleid);
                 });
 
         modelMapper.typeMap(EmployeeDTO.class, Employee.class)

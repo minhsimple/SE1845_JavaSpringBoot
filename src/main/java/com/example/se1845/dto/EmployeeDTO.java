@@ -36,4 +36,16 @@ public class EmployeeDTO {
     @NotNull(message = "department number is required")
     @NotBlank(message = "department number is required")
     private String deptNo;
+
+    @NotNull(message = "email is required")
+    @NotBlank(message = "email is required")
+    private String email;
+
+    @NotNull(message = "password is required")
+    @NotBlank(message = "password is required")
+    private String password;
+
+    @NotNull(message = "role is required")
+    @NotBlank(message = "role is required")
+    private String roleid;
 }

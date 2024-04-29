@@ -40,6 +40,12 @@ public class Employee {
     @Column(name = "Sex")
     private boolean sex;
 
+    @Column(name = "Email", unique = true)
+    private String email;
+
+    @Column(name = "Password")
+    private String password;
+
     @OneToMany(mappedBy = "employee")
     @JsonManagedReference
     Set<EmpWorkOnPro> ewps;
@@ -52,4 +58,9 @@ public class Employee {
     @JoinColumn(name = "DeptNo")
     @JsonBackReference
     private Department dept;
+
+    @ManyToOne
+    @JoinColumn(name = "RoleId")
+    @JsonBackReference
+    private Role role;
 }

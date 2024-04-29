@@ -41,7 +41,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .requestMatchers("/auth/**")
                 .permitAll()
-                .requestMatchers(HttpMethod.GET, "/departments/**")
+                .requestMatchers(HttpMethod.GET, "/departments/**", "/roles/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
