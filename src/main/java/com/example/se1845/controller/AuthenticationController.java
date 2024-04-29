@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.se1845.Config.JwtUtil;
-import com.example.se1845.dao.UserDao;
 import com.example.se1845.dto.AuthenticationRequest;
+import com.example.se1845.service.EmployeeService;
 
 @RestController
 @RequestMapping("/auth")
@@ -24,7 +24,7 @@ public class AuthenticationController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserDao userDao;
+    private EmployeeService employeeService;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -38,10 +38,7 @@ public class AuthenticationController {
             return new ResponseEntity<>("AuthenticationManager authenticate error", HttpStatus.UNAUTHORIZED);
         }
 
-        final UserDetails user = userDao.findUserByEmail(request.getEmail());
-        if (user != null) {
-            return new ResponseEntity<>(jwtUtil.generateToken(user), HttpStatus.OK);
-        }
-        return new ResponseEntity<>("error user not found", HttpStatus.UNAUTHORIZED);
+        final UserDetails user = employeeService.findEmployeeByEmail(request.getEmail()).get();
+        return new ResponseEntity<>(jwtUtil.generateToken(user), HttpStatus.OK);
     }
 }

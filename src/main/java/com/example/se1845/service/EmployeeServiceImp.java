@@ -71,4 +71,9 @@ public class EmployeeServiceImp implements EmployeeService {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @Override
+    public Optional<Employee> findEmployeeByEmail(String email) {
+        return employeeRepository.findOneByEmail(email);
+    }
+
 }
