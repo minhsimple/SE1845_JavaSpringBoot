@@ -6,10 +6,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,11 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.se1845.Config.JwtUtil;
 import com.example.se1845.dto.AuthenticationRequest;
-import com.example.se1845.dto.AuthenticationResponse;
 import com.example.se1845.dto.EmployeeDTO;
-import com.example.se1845.service.EmployeeService;
+import com.example.se1845.service.AuthenticationService;
 
 import jakarta.validation.Valid;
 
@@ -32,34 +26,16 @@ import jakarta.validation.Valid;
 public class AuthenticationController {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private EmployeeService employeeService;
-
-    @Autowired
-    private JwtUtil jwtUtil;
+    private AuthenticationService authenticationService;
 
     @PostMapping("/authenticate")
     public ResponseEntity<Object> authenticate(@Valid @RequestBody AuthenticationRequest request) {
-        try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-        } catch (AuthenticationException e) {
-            return new ResponseEntity<>("AuthenticationManager authenticate error", HttpStatus.UNAUTHORIZED);
-        }
-
-        final UserDetails user = employeeService.findEmployeeByEmail(request.getEmail()).get();
-        AuthenticationResponse response = new AuthenticationResponse(jwtUtil.generateToken(user));
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return authenticationService.authenticate(request);
     }
 
     @PostMapping("/register")
     public ResponseEntity<Object> register(@Valid @RequestBody EmployeeDTO account) {
-        employeeService.createEmployee(account);
-        final UserDetails user = employeeService.findEmployeeByEmail(account.getEmail()).get();
-        AuthenticationResponse response = new AuthenticationResponse(jwtUtil.generateToken(user));
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return authenticationService.register(account);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
