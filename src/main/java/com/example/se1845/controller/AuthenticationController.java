@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.se1845.Config.JwtUtil;
 import com.example.se1845.dto.AuthenticationRequest;
+import com.example.se1845.dto.AuthenticationResponse;
+import com.example.se1845.dto.EmployeeDTO;
 import com.example.se1845.service.EmployeeService;
 
 import jakarta.validation.Valid;
@@ -39,7 +41,7 @@ public class AuthenticationController {
     private JwtUtil jwtUtil;
 
     @PostMapping("/authenticate")
-    public ResponseEntity<String> authenticate(@Valid @RequestBody AuthenticationRequest request) {
+    public ResponseEntity<Object> authenticate(@Valid @RequestBody AuthenticationRequest request) {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
@@ -48,7 +50,16 @@ public class AuthenticationController {
         }
 
         final UserDetails user = employeeService.findEmployeeByEmail(request.getEmail()).get();
-        return new ResponseEntity<>(jwtUtil.generateToken(user), HttpStatus.OK);
+        AuthenticationResponse response = new AuthenticationResponse(jwtUtil.generateToken(user));
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<Object> register(@Valid @RequestBody EmployeeDTO account) {
+        employeeService.createEmployee(account);
+        final UserDetails user = employeeService.findEmployeeByEmail(account.getEmail()).get();
+        AuthenticationResponse response = new AuthenticationResponse(jwtUtil.generateToken(user));
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
