@@ -27,6 +27,8 @@ public class EmployeeConverter {
                     mapper.<String>map(EmployeeDTO::getRoleid, (dest, value) -> dest.getRole().setRoleid(value));
                     mapper.skip(Employee::setEwps);
                     mapper.skip(Employee::setErds);
+                    mapper.skip(Employee::setForgotPasswordOtp);
+                    mapper.skip(Employee::setOtpExpired);
                 });
     }
 

@@ -1,6 +1,7 @@
 package com.example.se1845.model;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -51,6 +52,12 @@ public class Employee implements UserDetails {
 
     @Column(name = "Password")
     private String password;
+
+    @Column(name = "Forgot_password_otp")
+    private Integer forgotPasswordOtp;
+
+    @Column(name = "Otp_Expired")
+    private Date otpExpired;
 
     @OneToMany(mappedBy = "employee")
     @JsonManagedReference
