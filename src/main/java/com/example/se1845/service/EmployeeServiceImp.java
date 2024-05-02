@@ -1,5 +1,6 @@
 package com.example.se1845.service;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -74,6 +75,21 @@ public class EmployeeServiceImp implements EmployeeService {
     @Override
     public Optional<Employee> findEmployeeByEmail(String email) {
         return employeeRepository.findOneByEmail(email);
+    }
+
+    @Override
+    public void updateOtpInfoByEmail(String email, Integer forgotPasswordOtp, Date otpExpired) {
+        employeeRepository.updateOtpInfoByEmail(email, forgotPasswordOtp, otpExpired);
+    }
+
+    @Override
+    public Optional<Employee> findOneByEmailAndForgotPasswordOtp(String email, Integer forgotPasswordOtp) {
+        return employeeRepository.findOneByEmailAndForgotPasswordOtp(email, forgotPasswordOtp);
+    }
+
+    @Override
+    public void updatePasswordByEmail(String email, String password) {
+        employeeRepository.updatePasswordByEmail(email, password);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.se1845.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,4 +21,10 @@ public interface EmployeeService {
     public List<EmployeeDTO> getAllEmployee();
 
     public ResponseEntity<Object> deleteEmployee(String ssn);
+
+    public void updateOtpInfoByEmail(String email, Integer forgotPasswordOtp, Date otpExpired);
+
+    public Optional<Employee> findOneByEmailAndForgotPasswordOtp(String email, Integer forgotPasswordOtp);
+
+    public void updatePasswordByEmail(String email, String password);
 }

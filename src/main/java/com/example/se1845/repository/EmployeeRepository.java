@@ -1,5 +1,6 @@
 package com.example.se1845.repository;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,4 +20,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
     @Transactional
     @Query("update Employee e set e.password = ?2 where e.email = ?1")
     public void updatePasswordByEmail(String email, String password);
+
+    @Modifying
+    @Transactional
+    @Query("update Employee e set e.forgotPasswordOtp = ?2, e.otpExpired = ?3 where e.email = ?1")
+    public void updateOtpInfoByEmail(String email, Integer forgotPasswordOtp, Date otpExpired);
 }
