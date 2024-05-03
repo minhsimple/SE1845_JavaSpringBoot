@@ -18,13 +18,17 @@ public class EmployeeConverter {
         modelMapper.typeMap(Employee.class, EmployeeDTO.class)
                 .addMappings(mapper -> {
                     mapper.map(src -> src.getDept().getDeptno(), EmployeeDTO::setDeptNo);
+                    mapper.map(src -> src.getRole().getRoleid(), EmployeeDTO::setRoleid);
                 });
 
         modelMapper.typeMap(EmployeeDTO.class, Employee.class)
                 .addMappings(mapper -> {
                     mapper.<String>map(EmployeeDTO::getDeptNo, (dest, value) -> dest.getDept().setDeptno(value));
+                    mapper.<String>map(EmployeeDTO::getRoleid, (dest, value) -> dest.getRole().setRoleid(value));
                     mapper.skip(Employee::setEwps);
                     mapper.skip(Employee::setErds);
+                    mapper.skip(Employee::setForgotPasswordOtp);
+                    mapper.skip(Employee::setOtpExpired);
                 });
     }
 

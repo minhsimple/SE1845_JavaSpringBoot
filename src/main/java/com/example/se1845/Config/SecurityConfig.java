@@ -10,7 +10,6 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
@@ -18,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.example.se1845.dao.UserDao;
+import com.example.se1845.service.EmployeeService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -31,7 +30,7 @@ public class SecurityConfig {
     private JwtAthFilter jwtAuthFilter;
 
     @Autowired
-    private UserDao userDao;
+    private EmployeeService employeeService;
 
     @SuppressWarnings("removal")
     @Bean
@@ -41,7 +40,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .requestMatchers("/auth/**")
                 .permitAll()
-                .requestMatchers(HttpMethod.GET, "/departments/**")
+                .requestMatchers(HttpMethod.GET, "/departments/**", "/roles/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -74,11 +73,7 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new UserDetailsService() {
-            @Override
-            public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-                return userDao.findUserByEmail(email);
-            }
-        };
+        return username -> employeeService.findEmployeeByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }
