@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.se1845.converter.EmployeeConverter;
@@ -24,8 +25,12 @@ public class EmployeeServiceImp implements EmployeeService {
     @Autowired
     private EmployeeConverter employeeConverter;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public ResponseEntity<Object> createEmployee(EmployeeDTO employeeDto) {
+        employeeDto.setPassword(passwordEncoder.encode(employeeDto.getPassword()));
         Employee employee = employeeConverter.toEmployee(employeeDto);
         employeeRepository.save(employee);
         return new ResponseEntity<>(employeeDto, HttpStatus.CREATED);
