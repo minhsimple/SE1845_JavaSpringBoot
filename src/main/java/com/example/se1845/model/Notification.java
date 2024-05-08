@@ -30,7 +30,7 @@ public class Notification {
     @Column(name = "Start")
     private String start;
 
-    @Column(name = "End")
+    @Column(name = "[End]")
     private String end;
 
     @ManyToOne
