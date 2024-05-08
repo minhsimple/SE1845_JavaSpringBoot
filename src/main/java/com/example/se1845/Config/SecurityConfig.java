@@ -34,6 +34,7 @@ public class SecurityConfig {
                 .permitAll()
                 .requestMatchers(HttpMethod.POST, "/notifications").hasAnyRole("ADMIN", "MANAGER")
                 .requestMatchers(HttpMethod.PUT, "/notifications/**").hasAnyRole("ADMIN", "MANAGER")
+                .requestMatchers(HttpMethod.DELETE, "/notifications/**").hasAnyRole("ADMIN", "MANAGER")
                 .anyRequest()
                 .authenticated()
                 .and()
