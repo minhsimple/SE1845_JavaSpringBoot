@@ -32,6 +32,7 @@ public class SecurityConfig {
                 .permitAll()
                 .requestMatchers(HttpMethod.GET, "/departments/**", "/roles/**")
                 .permitAll()
+                .requestMatchers("/notification/create", "/notification/edit").hasAnyRole("ADMIN", "MANAGER")
                 .anyRequest()
                 .authenticated()
                 .and()
