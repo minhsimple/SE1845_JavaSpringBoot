@@ -3,10 +3,12 @@ package com.example.se1845.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class NotificationDTO {
@@ -31,7 +33,5 @@ public class NotificationDTO {
     @NotBlank(message = "end is required")
     private String end;
 
-    @NotNull(message = "ssn is required")
-    @NotBlank(message = "ssn is required")
     private String ssn;
 }

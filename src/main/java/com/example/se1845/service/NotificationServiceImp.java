@@ -10,21 +10,30 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.se1845.converter.NotificationConverter;
+import com.example.se1845.dto.AuthenticationRequest;
 import com.example.se1845.dto.NotificationDTO;
 import com.example.se1845.model.Notification;
+import com.example.se1845.repository.EmployeeRepository;
 import com.example.se1845.repository.NotificationRepository;
 
 @Service
-public class NoctificationServiceImp implements NotificationService {
+public class NotificationServiceImp implements NotificationService {
+
+    @Autowired
+    private AuthenticationRequest authenticationRequest;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     @Autowired
     private NotificationRepository notificationRepository;
 
     @Autowired
-    NotificationConverter notificationConverter;
+    private NotificationConverter notificationConverter;
 
     @Override
     public ResponseEntity<Object> createNotification(NotificationDTO notificationDto) {
+        notificationDto.setSsn(employeeRepository.findOneByEmail(authenticationRequest.getEmail()).get().getSsn());
         Notification notification = notificationConverter.toNotification(notificationDto);
         notificationRepository.save(notification);
         return new ResponseEntity<>(notificationDto, HttpStatus.CREATED);
@@ -33,6 +42,7 @@ public class NoctificationServiceImp implements NotificationService {
     @Override
     public ResponseEntity<Object> updateNotification(String notifyid, NotificationDTO notificationDto) {
         if (notificationRepository.existsById(notifyid)) {
+            notificationDto.setSsn(employeeRepository.findOneByEmail(authenticationRequest.getEmail()).get().getSsn());
             Notification notification = notificationConverter.toNotification(notificationDto);
             notificationRepository.save(notification);
             return new ResponseEntity<>(notificationDto, HttpStatus.OK);

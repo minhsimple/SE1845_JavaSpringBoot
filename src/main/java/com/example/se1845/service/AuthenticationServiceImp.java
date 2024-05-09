@@ -29,6 +29,9 @@ import com.example.se1845.repository.EmployeeRepository;
 public class AuthenticationServiceImp implements AuthenticationService {
 
     @Autowired
+    private AuthenticationRequest authenticationRequest;
+
+    @Autowired
     private EmployeeConverter employeeConverter;
 
     @Autowired
@@ -55,6 +58,7 @@ public class AuthenticationServiceImp implements AuthenticationService {
             return new ResponseEntity<>("AuthenticationManager authenticate error", HttpStatus.UNAUTHORIZED);
         }
 
+        authenticationRequest.setEmail(request.getEmail());
         final UserDetails user = employeeRepository.findOneByEmail(request.getEmail()).get();
         AuthenticationResponse response = new AuthenticationResponse(jwtUtil.generateToken(user));
         return new ResponseEntity<>(response, HttpStatus.OK);
