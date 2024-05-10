@@ -26,6 +26,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import com.example.se1845.dto.MailBody;
 import com.example.se1845.dto.NotificationDTO;
+import com.example.se1845.model.Employee;
+import com.example.se1845.repository.EmployeeRepository;
 import com.example.se1845.service.EmailService;
 
 @Configuration
@@ -43,6 +45,9 @@ public class BatchConfig {
 
     @Autowired
     private JobRepository jobRepository;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     @Bean
     public JdbcCursorItemReader<NotificationDTO> reader() {
@@ -72,15 +77,19 @@ public class BatchConfig {
     @Bean
     public ItemWriter<NotificationDTO> writer() {
         return items -> {
-            for (NotificationDTO item : items) {
-                MailBody mailBody = MailBody.builder()
-                        .to("minhnbdhe180660@fpt.edu.vn")
-                        .subject("Notification: " + item.getTitle())
-                        .text(item.getDetail())
-                        .build();
+            Iterable<Employee> employees = employeeRepository.findAll();
+            for (Employee employee : employees) {
+                for (NotificationDTO item : items) {
+                    MailBody mailBody = MailBody.builder()
+                            .to(employee.getEmail())
+                            .subject("Notification: " + item.getTitle())
+                            .text(item.getDetail())
+                            .build();
 
-                emailService.sendSimpleMessage(mailBody);
+                    emailService.sendSimpleMessage(mailBody);
+                }
             }
+
         };
     }
 

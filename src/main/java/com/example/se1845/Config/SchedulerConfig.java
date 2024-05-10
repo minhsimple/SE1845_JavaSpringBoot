@@ -21,7 +21,7 @@ public class SchedulerConfig {
     @Autowired
     private Job job;
 
-    @Scheduled(cron = "0 57 18 * * ?")
+    @Scheduled(cron = "0 3 18  * * ?")
     public void sendNotificationMailJob() {
         log.info("Email sending . . .");
         try {
