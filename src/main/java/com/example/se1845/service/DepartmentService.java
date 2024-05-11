@@ -1,7 +1,5 @@
 package com.example.se1845.service;
 
-import java.util.List;
-
 import org.springframework.http.ResponseEntity;
 
 import com.example.se1845.dto.DepartmentDTO;
@@ -16,7 +14,7 @@ public interface DepartmentService {
 
     public Department getOneByDeptNo(String deptNo);
 
-    public List<DepartmentDTO> getAllDepartment();
+    public ResponseEntity<Object> getAllDepartment();
 
     public ResponseEntity<Object> deleteDepartment(String deptNo);
 }

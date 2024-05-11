@@ -33,5 +33,7 @@ public class NotificationDTO {
     @NotBlank(message = "end is required")
     private String end;
 
+    @NotNull(message = "ssn is required")
+    @NotBlank(message = "ssn is required")
     private String ssn;
 }

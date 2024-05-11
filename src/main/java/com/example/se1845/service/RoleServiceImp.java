@@ -52,14 +52,14 @@ public class RoleServiceImp implements RoleService {
     }
 
     @Override
-    public List<RoleDTO> getAllRole() {
+    public ResponseEntity<Object> getAllRole() {
         Iterable<Role> roles = roleRepository.findAll();
         List<RoleDTO> roleDtos = new ArrayList<>();
         for (Role role : roles) {
             RoleDTO roleDto = roleConverter.toRoleDTO(role);
             roleDtos.add(roleDto);
         }
-        return roleDtos;
+        return new ResponseEntity<>(roleDtos, HttpStatus.OK);
     }
 
     @Override

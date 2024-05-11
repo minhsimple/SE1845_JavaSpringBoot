@@ -51,13 +51,13 @@ public class DependenceServiceImp implements DependenceService {
     }
 
     @Override
-    public List<DependenceDTO> getAllDependence() {
+    public ResponseEntity<Object> getAllDependence() {
         Iterable<Dependence> dependences = depRepo.findAll();
         List<DependenceDTO> depDtos = new ArrayList<>();
         for (Dependence dep : dependences) {
             depDtos.add(depConverter.toDependenceDTO(dep));
         }
-        return depDtos;
+        return new ResponseEntity<>(depDtos, HttpStatus.OK);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.example.se1845.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,7 @@ public class DepartmentRestApiController {
     private DepartmentService departmentService;
 
     @GetMapping
-    public List<DepartmentDTO> getAllDepartments() {
+    public ResponseEntity<Object> getAllDepartments() {
         return departmentService.getAllDepartment();
     }
 

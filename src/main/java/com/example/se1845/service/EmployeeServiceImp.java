@@ -1,6 +1,5 @@
 package com.example.se1845.service;
 
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -58,14 +57,14 @@ public class EmployeeServiceImp implements EmployeeService {
     }
 
     @Override
-    public List<EmployeeDTO> getAllEmployee() {
+    public ResponseEntity<Object> getAllEmployee() {
         Iterable<Employee> employees = employeeRepository.findAll();
         List<EmployeeDTO> employeeDtos = new ArrayList<>();
         for (Employee employee : employees) {
             EmployeeDTO employeeDto = employeeConverter.toEmployeeDTO(employee);
             employeeDtos.add(employeeDto);
         }
-        return employeeDtos;
+        return new ResponseEntity<>(employeeDtos, HttpStatus.OK);
     }
 
     @Override
@@ -75,26 +74,6 @@ public class EmployeeServiceImp implements EmployeeService {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @Override
-    public Optional<Employee> findEmployeeByEmail(String email) {
-        return employeeRepository.findOneByEmail(email);
-    }
-
-    @Override
-    public void updateOtpInfoByEmail(String email, Integer forgotPasswordOtp, Date otpExpired) {
-        employeeRepository.updateOtpInfoByEmail(email, forgotPasswordOtp, otpExpired);
-    }
-
-    @Override
-    public Optional<Employee> findOneByEmailAndForgotPasswordOtp(String email, Integer forgotPasswordOtp) {
-        return employeeRepository.findOneByEmailAndForgotPasswordOtp(email, forgotPasswordOtp);
-    }
-
-    @Override
-    public void updatePasswordByEmail(String email, String password) {
-        employeeRepository.updatePasswordByEmail(email, password);
     }
 
 }

@@ -55,13 +55,13 @@ public class DepartmentServiceImp implements DepartmentService {
     }
 
     @Override
-    public List<DepartmentDTO> getAllDepartment() {
+    public ResponseEntity<Object> getAllDepartment() {
         Iterable<Department> departments = departmentRepository.findAll();
         List<DepartmentDTO> departmentDtos = new ArrayList<>();
         for (Department department : departments) {
             departmentDtos.add(departmentConverter.toDepartmentDTO(department));
         }
-        return departmentDtos;
+        return new ResponseEntity<>(departmentDtos, HttpStatus.OK);
     }
 
     @Override

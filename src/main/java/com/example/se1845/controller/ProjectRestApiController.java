@@ -1,7 +1,6 @@
 package com.example.se1845.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,7 @@ public class ProjectRestApiController {
     private ProjectService projectService;
 
     @GetMapping
-    public List<ProjectDTO> getAllProjects() {
+    public ResponseEntity<Object> getAllProjects() {
         return projectService.getAllProject();
     }
 

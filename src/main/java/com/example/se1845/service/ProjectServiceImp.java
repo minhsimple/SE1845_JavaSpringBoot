@@ -52,14 +52,14 @@ public class ProjectServiceImp implements ProjectService {
     }
 
     @Override
-    public List<ProjectDTO> getAllProject() {
+    public ResponseEntity<Object> getAllProject() {
         Iterable<Project> proList = projectRepository.findAll();
         List<ProjectDTO> proDtoList = new ArrayList<>();
         for (Project pro : proList) {
             ProjectDTO proDto = projectConverter.toProjectDTO(pro);
             proDtoList.add(proDto);
         }
-        return proDtoList;
+        return new ResponseEntity<>(proDtoList, HttpStatus.OK);
     }
 
     @Override
