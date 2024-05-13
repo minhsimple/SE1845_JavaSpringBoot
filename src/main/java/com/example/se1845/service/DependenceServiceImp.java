@@ -21,7 +21,7 @@ public class DependenceServiceImp implements DependenceService {
     private DependenceRepository depRepo;
 
     @Autowired
-    DependenceConverter depConverter;
+    private DependenceConverter depConverter;
 
     @Override
     public ResponseEntity<Object> createDependence(DependenceDTO depDto) {

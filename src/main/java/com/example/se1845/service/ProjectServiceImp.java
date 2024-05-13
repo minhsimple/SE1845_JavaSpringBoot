@@ -21,7 +21,7 @@ public class ProjectServiceImp implements ProjectService {
     private ProjectRepository projectRepository;
 
     @Autowired
-    ProjectConverter projectConverter;
+    private ProjectConverter projectConverter;
 
     @Override
     public ResponseEntity<Object> createProject(ProjectDTO proDto) {
