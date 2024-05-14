@@ -2,8 +2,10 @@ package com.example.se1845.Config;
 
 import javax.sql.DataSource;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -24,6 +26,8 @@ import org.springframework.batch.item.support.PassThroughItemProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.lang.Nullable;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -73,23 +77,17 @@ public class BatchConfig {
         return new JdbcCursorItemReaderBuilder<NotificationDTO>()
                 .dataSource(dataSource)
                 .name("notificationItemReader")
-                .sql("select NotifyID, Title, Detail, Start, [End], SSN from Notification")
-                .rowMapper(new RowMapper<NotificationDTO>() {
+                .sql("select NotifyID, Title, Detail, Start, [End], SSN from Notification where Start <= ? and [End] >= ?")
+                .preparedStatementSetter(new PreparedStatementSetter() {
                     @Override
-                    @Nullable
                     @SuppressWarnings("null")
-                    public NotificationDTO mapRow(ResultSet rs, int rowNum)
-                            throws SQLException {
-                        return NotificationDTO.builder()
-                                .notifyid(rs.getString("NotifyID"))
-                                .title(rs.getString("Title"))
-                                .detail(rs.getString("Detail"))
-                                .start(rs.getString("Start"))
-                                .end(rs.getString("End"))
-                                .ssn(rs.getString("SSN"))
-                                .build();
+                    public void setValues(PreparedStatement ps) throws SQLException {
+                        ps.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
+                        ps.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
                     }
+
                 })
+                .rowMapper(new BeanPropertyRowMapper<>(NotificationDTO.class))
                 .build();
     }
 
