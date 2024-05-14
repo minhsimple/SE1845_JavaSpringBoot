@@ -85,7 +85,6 @@ public class BatchConfig {
                         ps.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
                         ps.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
                     }
-
                 })
                 .rowMapper(new BeanPropertyRowMapper<>(NotificationDTO.class))
                 .build();
